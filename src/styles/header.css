@@ -1,0 +1,33 @@
+header {
+  background-color: var(--secondary-accent);
+  height: 10rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  color: var(--text-color);
+}
+
+header img {
+  height: 6rem;
+  margin: 1rem 0 0 auto;
+}
+
+.react-news-title {
+  text-align: center;
+  font-size: 2rem;
+  margin: auto 0 auto 0;
+  height: fit-content;
+}
+
+.react-news-title > h1 {
+  margin: -1rem;
+}
+
+.buttons-switch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--accent-color);
+}
