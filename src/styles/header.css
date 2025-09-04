@@ -5,7 +5,8 @@ header {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: space-between;
+  padding: 2rem;
   color: var(--accent-color);
 }
 
@@ -30,4 +31,9 @@ header img {
   flex-direction: column;
   align-items: center;
   color: var(--accent-color);
+  margin-right: 2rem;
+}
+
+.hamburger {
+  stroke: var(--accent-color);
 }
