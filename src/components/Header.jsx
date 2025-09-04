@@ -11,7 +11,7 @@ import { buttonTheme } from "../styles/theme";
 
 const theme = buttonTheme;
 
-export function Header({ navLinks }) {
+export function Header({ navLinks, darkmodeFunction }) {
   const NavLinks = navLinks.map((link) => {
     return (
       <NavLink key={navLinks.indexOf(link)} to={"/" + link}>
@@ -24,8 +24,6 @@ export function Header({ navLinks }) {
 
   return (
     <header>
-      {/** LOGO TITLE NAV(HOME, LOGIN) DARKMODE */}
-
       <a href="">
         <img src="../reactnewslogo.png" alt="React News logo" />
       </a>
@@ -36,7 +34,11 @@ export function Header({ navLinks }) {
       <ThemeProvider theme={buttonTheme}>
         <div className="buttons-switch">
           <ButtonGroup>{NavLinks}</ButtonGroup>
-          <FormControlLabel control={<Switch />} label="Darkmode" />
+          <FormControlLabel
+            control={<Switch />}
+            label="Darkmode"
+            onChange={darkmodeFunction}
+          />
         </div>
       </ThemeProvider>
     </header>
