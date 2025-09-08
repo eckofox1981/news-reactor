@@ -7,6 +7,7 @@ import { Sidebar } from "./components/Sidebar";
 import { Login } from "./pages/Login";
 import { About } from "./pages/About";
 import { RealNews } from "./pages/RealNews";
+import { Footer } from "./components/Footer";
 
 function App() {
   const [sideBarIsOpen, setSideBarIsOpen] = useState(false);
@@ -32,8 +33,6 @@ function App() {
   };
 
   const enableDarkmode = (value) => {
-    console.log("running" + value);
-
     setMode(value);
   };
 
@@ -48,6 +47,7 @@ function App() {
           <Route path="/real-news" element={<RealNews />} />
           <Route path="/about" element={<About />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
     </ThemeProvider>
   );

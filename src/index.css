@@ -3,6 +3,7 @@
   --background-primary: hsl(0, 0%, 90%);
   --accent-color: hsl(178, 100%, 55%);
   --contrast-color: hsl(227, 100%, 52%);
+  --special-color: rgb(255, 106, 0);
 }
 
 body {
@@ -16,4 +17,10 @@ body {
   --background-primary: hsl(0, 0%, 10%);
   --accent-color: hsl(227, 100%, 52%);
   --contrast-color: hsl(178, 100%, 55%);
+}
+
+main {
+  max-width: 1300px;
+  width: 80%;
+  margin: 1rem auto 1rem auto;
 }

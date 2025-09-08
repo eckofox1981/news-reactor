@@ -1,8 +1,8 @@
-export const maleSvg = () => {
+export const MaleSvg = () => {
   return (
     <svg
-      width="800px"
-      height="800px"
+      width="25px"
+      height="25px"
       viewBox="0 0 20 20"
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
@@ -15,13 +15,13 @@ export const maleSvg = () => {
         id="Page-1"
         stroke="none"
         stroke-width="1"
-        fill="none"
+        fill="var(--special-color)"
         fill-rule="evenodd"
       >
         <g
           id="Dribbble-Light-Preview"
           transform="translate(-60.000000, -2079.000000)"
-          fill="#000000"
+          fill="var(--special-color)"
         >
           <g id="icons" transform="translate(56.000000, 160.000000)">
             <path
@@ -35,11 +35,11 @@ export const maleSvg = () => {
   );
 };
 
-const femaleSvg = () => {
+export const FemaleSvg = () => {
   return (
     <svg
-      width="800px"
-      height="800px"
+      width="25px"
+      height="25px"
       viewBox="-3 0 20 20"
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
@@ -52,13 +52,13 @@ const femaleSvg = () => {
         id="Page-1"
         stroke="none"
         stroke-width="1"
-        fill="none"
+        fill="var(--special-color)"
         fill-rule="evenodd"
       >
         <g
           id="Dribbble-Light-Preview"
           transform="translate(-103.000000, -2079.000000)"
-          fill="#000000"
+          fill="var(--special-color)"
         >
           <g id="icons" transform="translate(56.000000, 160.000000)">
             <path
