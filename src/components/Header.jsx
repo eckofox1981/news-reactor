@@ -3,9 +3,11 @@ import {
   ButtonGroup,
   ToggleButton,
   ToggleButtonGroup,
+  Typography,
 } from "@mui/material";
 import "../styles/header.css";
 import reactNewsLogo from "../assets/reactnewslogo.png";
+import { NavLink } from "react-router-dom";
 
 export function Header({ darkmode, toggleDrawer }) {
   return (
@@ -18,15 +20,25 @@ export function Header({ darkmode, toggleDrawer }) {
         }}
       />
       <div>
-        <h1>React News</h1>
-        <p>the best dummy news site on the web</p>
+        <Typography variant="h1">React news</Typography>
+        <Typography variant="h5">
+          the best dummy news site on the web
+        </Typography>
       </div>
       <div className="buttons">
         <ButtonGroup variant="contained" size="large">
-          <Button>Home</Button>
-          <Button>Login</Button>
-          <Button>Real News</Button>
-          <Button>About</Button>
+          <NavLink to={"/"}>
+            <Button>Home</Button>
+          </NavLink>
+          <NavLink to={"/login"}>
+            <Button>Login</Button>
+          </NavLink>
+          <NavLink to={"/real-news"}>
+            <Button>Real News</Button>
+          </NavLink>
+          <NavLink to={"/about"}>
+            <Button>About</Button>
+          </NavLink>
         </ButtonGroup>
         <ToggleButtonGroup
           color="info"
@@ -37,8 +49,8 @@ export function Header({ darkmode, toggleDrawer }) {
           }}
           aria-label="Platform"
         >
-          <ToggleButton value="Light">Light</ToggleButton>
-          <ToggleButton value="Dark">Dark</ToggleButton>
+          <ToggleButton value="light">Light</ToggleButton>
+          <ToggleButton value="dark">Dark</ToggleButton>
         </ToggleButtonGroup>
       </div>
     </header>

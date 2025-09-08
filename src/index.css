@@ -1,6 +1,19 @@
 :root {
+  --text-color: hsl(0, 0%, 10%);
+  --background-primary: hsl(0, 0%, 90%);
+  --accent-color: hsl(178, 100%, 55%);
+  --contrast-color: hsl(227, 100%, 52%);
 }
 
 body {
   margin: 0;
+  background-color: var(--background-primary);
+  color: var(--text-color);
+}
+
+.darkmode {
+  --text-color: hsl(0, 0%, 90%);
+  --background-primary: hsl(0, 0%, 10%);
+  --accent-color: hsl(227, 100%, 52%);
+  --contrast-color: hsl(178, 100%, 55%);
 }
