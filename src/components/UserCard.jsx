@@ -29,17 +29,18 @@ export function UserCard({ userId }) {
     } else {
       return (
         <Container
+          disableGutters
           sx={{
             display: "flex",
             gap: 1,
             alignItems: "center",
+            justifyContent: "center",
             border: "1px solid var(--contrast-color)",
             borderRadius: 2,
-            width: "60%",
+            width: 365,
             marginBottom: 1,
-            marginTop: "auto",
             backgroundImage:
-              "linear-gradient(to right, var(--accent-color), var(--contrast-color), var(--contrast-color), var(--contrast-color))",
+              "linear-gradient(to right, var(--accent-color), var(--contrast-color), var(--contrast-color))",
             color: "var(--special-color)",
           }}
         >

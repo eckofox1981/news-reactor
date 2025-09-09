@@ -8,8 +8,11 @@ import {
 import "../styles/header.css";
 import reactNewsLogo from "../assets/reactnewslogo.png";
 import { NavLink } from "react-router-dom";
+import { useStore } from "../functionality/store";
 
-export function Header({ darkmode, toggleDrawer }) {
+export function Header({ toggleDrawer }) {
+  const setUiMode = useStore((store) => store.setUiMode);
+
   return (
     <header>
       <img
@@ -45,7 +48,7 @@ export function Header({ darkmode, toggleDrawer }) {
           size="small"
           exclusive
           onChange={(e) => {
-            darkmode(e.target.value);
+            setUiMode(e.target.value);
           }}
           aria-label="Platform"
         >

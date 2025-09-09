@@ -38,6 +38,8 @@ export function ArticleCard({
           flexDirection: "column",
           alignContent: "center",
           height: "100%",
+          backgroundColor: "var(--background-primary)",
+          color: "var(--text-color)",
         }}
       >
         <CardContent
@@ -76,26 +78,37 @@ export function ArticleCard({
               gap: 0.25,
               marginTop: "auto",
               marginRight: 0,
-              marginBottom: 1,
+              marginBottom: "1px",
               marginLeft: "auto",
-              width: "fit-content",
+              width: "100%",
             }}
           >
             <ButtonGroup
               sx={{
-                backgroundColor: "var(--accent-color)",
                 display: "flex",
                 alignItems: "center",
-                marginLeft: "auto",
-                marginRight: 0,
-                borderRight: "1px solid var(--contrast-color)",
+                width: 1,
               }}
             >
-              <Button sx={{ width: "fit-content", textWrap: "nowrap" }}>
+              <Button
+                sx={{
+                  width: "50%",
+                  textWrap: "nowrap",
+                  backgroundColor: "var(--accent-color)",
+                  color: "var(--background-color)",
+                }}
+              >
                 Likes: {likes}
               </Button>
 
-              <Button sx={{ width: "fit-content", textWrap: "nowrap" }}>
+              <Button
+                sx={{
+                  width: "50%",
+                  textWrap: "nowrap",
+                  backgroundColor: "var(--contrast-color)",
+                  color: "var(--special-color)",
+                }}
+              >
                 Dislikes: {dislikes}
               </Button>
             </ButtonGroup>

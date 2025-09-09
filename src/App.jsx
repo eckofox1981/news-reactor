@@ -8,38 +8,36 @@ import { Login } from "./pages/Login";
 import { About } from "./pages/About";
 import { RealNews } from "./pages/RealNews";
 import { Footer } from "./components/Footer";
+import { useStore } from "./functionality/store";
 
 function App() {
   const [sideBarIsOpen, setSideBarIsOpen] = useState(false);
-  const [mode, setMode] = useState("light");
+
+  const uiMode = useStore((store) => store.uiMode);
 
   const theme = useMemo(
     () =>
       createTheme({
         palette: {
-          mode,
+          uiMode,
         },
       }),
-    [mode]
+    [uiMode]
   );
 
   useEffect(() => {
-    localStorage.setItem("ui-mode", mode);
+    localStorage.setItem("ui-mode", uiMode);
     document.body.classList.toggle("darkmode");
-  }, [mode]);
+  }, [uiMode]);
 
   const openDrawer = (value) => {
     setSideBarIsOpen(value);
   };
 
-  const enableDarkmode = (value) => {
-    setMode(value);
-  };
-
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
-        <Header darkmode={enableDarkmode} toggleDrawer={openDrawer} />
+        <Header toggleDrawer={openDrawer} />
         <Sidebar isOpen={sideBarIsOpen} toggleDrawer={openDrawer} />
         <Routes>
           <Route path="/" element={<Home />} />

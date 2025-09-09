@@ -3,6 +3,7 @@ import { Post } from "../object/Post.js";
 import { use } from "react";
 import { ArticleCard } from "../components/ArticleCard.jsx";
 import { Container, Grid } from "@mui/material";
+import { FillerArticleCard } from "../components/FillerArticleCard.jsx";
 
 export function Home() {
   const [posts, setPost] = useState([]);
@@ -19,7 +20,14 @@ export function Home() {
 
   const PublishingPost = () => {
     if (posts === null || posts[0] === undefined) {
-      return <i>Loading...</i>;
+      return (
+        <>
+          <FillerArticleCard />
+          <FillerArticleCard />
+          <FillerArticleCard />
+          <FillerArticleCard />
+        </>
+      );
     } else {
       return posts.map((p) => (
         <ArticleCard

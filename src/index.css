@@ -4,6 +4,8 @@
   --accent-color: hsl(178, 100%, 55%);
   --contrast-color: hsl(227, 100%, 52%);
   --special-color: rgb(255, 106, 0);
+  --placeholder-color: hsl(0, 0%, 15%);
+  --placeholder-background: hsl(0, 0%, 20%);
 }
 
 body {
