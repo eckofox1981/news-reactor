@@ -8,12 +8,13 @@ import { Login } from "./pages/Login";
 import { About } from "./pages/About";
 import { RealNews } from "./pages/RealNews";
 import { Footer } from "./components/Footer";
-import { useStore } from "./functionality/store";
+import { useMode } from "./functionality/store";
+import { ArticlePage } from "./pages/ArticlePage";
 
 function App() {
   const [sideBarIsOpen, setSideBarIsOpen] = useState(false);
 
-  const uiMode = useStore((store) => store.uiMode);
+  const uiMode = useMode((store) => store.uiMode);
 
   const theme = useMemo(
     () =>
@@ -46,6 +47,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/real-news" element={<RealNews />} />
           <Route path="/about" element={<About />} />
+          <Route path="/article/:id" element={<ArticlePage />} />
         </Routes>
         <Footer />
       </BrowserRouter>

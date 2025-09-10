@@ -36,7 +36,6 @@ export async function fetchUser(userId) {
     }
 
     const returned = await response.json();
-    console.log(returned);
 
     return new UserObject(
       returned.id,

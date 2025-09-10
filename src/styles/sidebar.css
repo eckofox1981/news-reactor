@@ -1,0 +1,21 @@
+a {
+  text-decoration: none;
+  color: var(--backgroun-color);
+}
+
+h3 {
+  margin: 0.5rem;
+  text-wrap: wrap;
+  max-width: 30rem;
+  text-transform: capitalize;
+}
+
+.logo {
+  height: 7rem;
+  width: 7rem;
+  align-self: center;
+}
+
+.nav-menu {
+  align-self: center;
+}

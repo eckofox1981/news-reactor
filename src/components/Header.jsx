@@ -1,17 +1,11 @@
-import {
-  Button,
-  ButtonGroup,
-  ToggleButton,
-  ToggleButtonGroup,
-  Typography,
-} from "@mui/material";
+import { ToggleButton, ToggleButtonGroup, Typography } from "@mui/material";
 import "../styles/header.css";
 import reactNewsLogo from "../assets/reactnewslogo.png";
-import { NavLink } from "react-router-dom";
-import { useStore } from "../functionality/store";
+import { useMode } from "../functionality/store";
+import { NavMenu } from "./NavMenu";
 
 export function Header({ toggleDrawer }) {
-  const setUiMode = useStore((store) => store.setUiMode);
+  const setUiMode = useMode((store) => store.setUiMode);
 
   return (
     <header>
@@ -25,7 +19,20 @@ export function Header({ toggleDrawer }) {
       <div>
         <Typography
           variant="h1"
-          sx={{ color: "var(--contrast-color)", fontWeight: "800", margin: 0 }}
+          sx={{
+            color: "var(--contrast-color)",
+            fontWeight: "800",
+            margin: 0,
+            textAlign: "center",
+            fontSize: {
+              "@media (max-width:680px)": {
+                fontSize: "4rem",
+              },
+              "@media (max-width:580px)": {
+                fontSize: "3rem",
+              },
+            },
+          }}
         >
           React news
         </Typography>
@@ -34,26 +41,14 @@ export function Header({ toggleDrawer }) {
           sx={{
             fontWeight: "100",
             marginTop: -3,
+            textAlign: "center",
           }}
         >
           the best dummy news site on the web
         </Typography>
       </div>
       <div className="buttons">
-        <ButtonGroup variant="contained" size="large">
-          <NavLink to={"/"}>
-            <Button>Home</Button>
-          </NavLink>
-          <NavLink to={"/login"}>
-            <Button>Login</Button>
-          </NavLink>
-          <NavLink to={"/real-news"}>
-            <Button>Real News</Button>
-          </NavLink>
-          <NavLink to={"/about"}>
-            <Button>About</Button>
-          </NavLink>
-        </ButtonGroup>
+        <NavMenu />
         <ToggleButtonGroup
           color="info"
           size="small"

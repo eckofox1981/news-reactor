@@ -4,22 +4,20 @@ import { use } from "react";
 import { ArticleCard } from "../components/ArticleCard.jsx";
 import { Container, Grid, Typography } from "@mui/material";
 import { FillerArticleCard } from "../components/FillerArticleCard.jsx";
+import { useBaseArticles } from "../functionality/store.js";
 
 export function Home() {
   const [posts, setPost] = useState([]);
 
-  useEffect(() => {
-    const fetch30Posts = async () => {
-      const original30Posts = await getThirtyPost();
-      console.log(original30Posts);
-      setPost(original30Posts);
-    };
+  const baseArticles = useBaseArticles((store) => store.baseArticles);
+  const setBaseArticles = useBaseArticles((store) => store.setBaseArticles);
 
-    fetch30Posts();
+  useEffect(() => {
+    getTwentyPost().then(setBaseArticles);
   }, []);
 
   const PublishingPost = () => {
-    if (posts === null || posts[0] === undefined) {
+    if (baseArticles === null || baseArticles[0] === undefined) {
       return (
         <>
           <FillerArticleCard />
@@ -31,7 +29,7 @@ export function Home() {
         </>
       );
     } else {
-      return posts.map((p) => (
+      return baseArticles.map((p) => (
         <ArticleCard
           key={p.id}
           id={p.id}
@@ -58,10 +56,10 @@ export function Home() {
   );
 }
 
-async function getThirtyPost() {
+async function getTwentyPost() {
   try {
     const response = await fetch(
-      "https://dummyjson.com/posts?limit=30&sortBy=id&order=desc",
+      "https://dummyjson.com/posts?limit=20&sortBy=id&order=desc",
       {
         method: "GET",
       }

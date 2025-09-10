@@ -6,7 +6,7 @@ export const MaleSvg = () => {
       viewBox="0 0 20 20"
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
-      xmlns:xlink="http://www.w3.org/1999/xlink"
+      xmlnsXlink="http://www.w3.org/1999/xlink"
     >
       <title>male [#1364]</title>
       <desc>Created with Sketch.</desc>
@@ -14,9 +14,9 @@ export const MaleSvg = () => {
       <g
         id="Page-1"
         stroke="none"
-        stroke-width="1"
+        strokeWidth="1"
         fill="var(--special-color)"
-        fill-rule="evenodd"
+        fillRule="evenodd"
       >
         <g
           id="Dribbble-Light-Preview"
@@ -43,7 +43,7 @@ export const FemaleSvg = () => {
       viewBox="-3 0 20 20"
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
-      xmlns:xlink="http://www.w3.org/1999/xlink"
+      xmlnsXlink="http://www.w3.org/1999/xlink"
     >
       <title>female [#1363]</title>
       <desc>Created with Sketch.</desc>
@@ -51,9 +51,9 @@ export const FemaleSvg = () => {
       <g
         id="Page-1"
         stroke="none"
-        stroke-width="1"
+        strokeWidth="1"
         fill="var(--special-color)"
-        fill-rule="evenodd"
+        fillRule="evenodd"
       >
         <g
           id="Dribbble-Light-Preview"

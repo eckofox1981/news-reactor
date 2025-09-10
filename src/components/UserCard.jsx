@@ -2,14 +2,13 @@ import { useEffect, useState } from "react";
 import { fetchUser, UserObject } from "../object/User";
 import { FemaleSvg, MaleSvg } from "./minorComponents/Svg";
 import "../styles/userCard.css";
-import { Box, Container } from "@mui/material";
+import { Box, Container, LinearProgress } from "@mui/material";
 
 export function UserCard({ userId }) {
   const [user, setUser] = useState(null);
   useEffect(() => {
     const getUser = async () => {
       const userFetched = await fetchUser(userId).catch(() => null);
-      console.log(userFetched);
       setUser(userFetched);
     };
     getUser();
@@ -25,7 +24,21 @@ export function UserCard({ userId }) {
 
   const LaCarte = () => {
     if (user === null) {
-      return <div className="usercard"> User {userId} not fetched </div>;
+      return (
+        <Box
+          sx={{
+            width: 365,
+            height: 38,
+            margin: 1,
+            border: "1px solid var(--contrast-color)",
+            borderRadius: 2,
+            backgroundImage:
+              "linear-gradient(to right, var(--accent-color), var(--contrast-color), var(--contrast-color))",
+          }}
+        >
+          <LinearProgress />
+        </Box>
+      );
     } else {
       return (
         <Container

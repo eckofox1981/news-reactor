@@ -10,6 +10,8 @@ import {
   Typography,
 } from "@mui/material";
 import { UserCard } from "./UserCard";
+import { LikeDislike } from "./LIkeDislike";
+import { Link } from "react-router-dom";
 
 export function ArticleCard({
   id,
@@ -55,17 +57,19 @@ export function ArticleCard({
           </Typography>
           <Typography variant="body1">{body}</Typography>
           <CardActions sx={{ alignSelf: "flex-end", textIndent: 5 }}>
-            <Button
-              size="small"
-              variant="contained"
-              sx={{
-                fontStyle: "italic",
-                alignSelf: "flex-end",
-                marginTop: -1,
-              }}
-            >
-              Read more id:{id}
-            </Button>
+            <Link to={`/article/${id}`}>
+              <Button
+                size="small"
+                variant="contained"
+                sx={{
+                  fontStyle: "italic",
+                  alignSelf: "flex-end",
+                  marginTop: -1,
+                }}
+              >
+                Read more
+              </Button>
+            </Link>
           </CardActions>
           <Container
             disableGutters
@@ -83,35 +87,7 @@ export function ArticleCard({
               width: "100%",
             }}
           >
-            <ButtonGroup
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                width: 1,
-              }}
-            >
-              <Button
-                sx={{
-                  width: "50%",
-                  textWrap: "nowrap",
-                  backgroundColor: "var(--accent-color)",
-                  color: "var(--background-color)",
-                }}
-              >
-                Likes: {likes}
-              </Button>
-
-              <Button
-                sx={{
-                  width: "50%",
-                  textWrap: "nowrap",
-                  backgroundColor: "var(--contrast-color)",
-                  color: "var(--special-color)",
-                }}
-              >
-                Dislikes: {dislikes}
-              </Button>
-            </ButtonGroup>
+            <LikeDislike likes={likes} dislikes={dislikes} />
             <Box
               sx={{
                 backgroundColor: "var(--contrast-color)",

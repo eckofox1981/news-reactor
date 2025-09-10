@@ -168,11 +168,7 @@ export function RegisterForm() {
         }}
       />
 
-      <FormControl
-        variant="filled"
-        helperText="Enter your gender"
-        sx={{ m: 1 }}
-      >
+      <FormControl variant="filled" sx={{ m: 1 }}>
         <FormLabel
           sx={{
             marginBottom: "-1.5rem",

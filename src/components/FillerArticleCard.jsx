@@ -29,7 +29,6 @@ export function FillerArticleCard() {
           display: "flex",
           flexDirection: "column",
           alignContent: "center",
-          height: "100%",
           backgroundColor: "var(--placeholder-background)",
           paddingLeft: 5,
           paddingRight: 5,
