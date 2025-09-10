@@ -86,7 +86,6 @@ export function FillerArticleCard() {
               alignItems: "center",
               alignSelf: "flex-end",
               height: 40,
-              alignSelf: "flex-end",
               gap: 0.25,
               marginTop: "auto",
               marginRight: 0,

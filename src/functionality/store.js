@@ -2,7 +2,7 @@ import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
 
 const store = (set) => ({
-  uiMode: "dark",
+  uiMode: "light",
   setUiMode: (mode) => set({ uiMode: mode }, false, "setUiMode"),
 });
 
