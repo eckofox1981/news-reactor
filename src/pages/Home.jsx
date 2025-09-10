@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Post } from "../object/Post.js";
 import { use } from "react";
 import { ArticleCard } from "../components/ArticleCard.jsx";
-import { Container, Grid } from "@mui/material";
+import { Container, Grid, Typography } from "@mui/material";
 import { FillerArticleCard } from "../components/FillerArticleCard.jsx";
 
 export function Home() {
@@ -10,7 +10,7 @@ export function Home() {
 
   useEffect(() => {
     const fetch30Posts = async () => {
-      const original30Posts = await getThiryPost();
+      const original30Posts = await getThirtyPost();
       console.log(original30Posts);
       setPost(original30Posts);
     };
@@ -22,6 +22,8 @@ export function Home() {
     if (posts === null || posts[0] === undefined) {
       return (
         <>
+          <FillerArticleCard />
+          <FillerArticleCard />
           <FillerArticleCard />
           <FillerArticleCard />
           <FillerArticleCard />
@@ -46,15 +48,17 @@ export function Home() {
 
   return (
     <main>
-      <h1>You're home</h1>
-      <Grid container spacing={2}>
+      <Typography variant="h1" sx={{ textAlign: "center " }}>
+        Latest news
+      </Typography>
+      <Grid container spacing={2} sx={{ justifyContent: "center" }}>
         <PublishingPost />
       </Grid>
     </main>
   );
 }
 
-async function getThiryPost() {
+async function getThirtyPost() {
   try {
     const response = await fetch(
       "https://dummyjson.com/posts?limit=30&sortBy=id&order=desc",

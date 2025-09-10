@@ -23,8 +23,19 @@ export function Header({ toggleDrawer }) {
         }}
       />
       <div>
-        <Typography variant="h1">React news</Typography>
-        <Typography variant="h5">
+        <Typography
+          variant="h1"
+          sx={{ color: "var(--contrast-color)", fontWeight: "800", margin: 0 }}
+        >
+          React news
+        </Typography>
+        <Typography
+          variant="h5"
+          sx={{
+            fontWeight: "100",
+            marginTop: -3,
+          }}
+        >
           the best dummy news site on the web
         </Typography>
       </div>

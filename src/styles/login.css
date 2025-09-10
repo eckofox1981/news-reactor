@@ -1,0 +1,23 @@
+.register-prompt {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.hidden-form {
+  margin-top: 3rem;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease, opacity 0.5s ease, padding 0.5s ease;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hidden-form.show {
+  max-height: fit-content;
+  opacity: 1;
+  padding: 1rem;
+}
