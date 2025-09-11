@@ -2,11 +2,13 @@ import { Drawer, Typography } from "@mui/material";
 import reactNewsLogo from "../assets/reactnewslogo.png";
 import "../styles/sidebar.css";
 import { NavMenu } from "./NavMenu";
-import { useBaseArticles } from "../functionality/store";
+import { useBaseArticles, useSideBarStore } from "../functionality/store";
 import { Link } from "react-router-dom";
 
-export function Sidebar({ isOpen, toggleDrawer }) {
+export function Sidebar() {
   const baseArticles = useBaseArticles((store) => store.baseArticles);
+  const sideBarOpen = useSideBarStore((store) => store.sideBarOpen);
+  const closeSideBar = useSideBarStore((store) => store.closeSideBar);
 
   const TitleList = () => {
     return baseArticles.map((a) => (
@@ -18,15 +20,25 @@ export function Sidebar({ isOpen, toggleDrawer }) {
 
   return (
     <Drawer
-      open={isOpen}
-      onClose={() => toggleDrawer(false)}
+      open={sideBarOpen}
+      onClose={() => {
+        closeSideBar();
+      }}
       sx={{
         display: "flex",
         flexDirection: "column",
         alignContent: "flex-start",
       }}
+      onClick={() => {
+        closeSideBar();
+      }}
     >
-      <img src={reactNewsLogo} alt="React News Logo" className="logo" />
+      <img
+        src={reactNewsLogo}
+        alt="React News Logo"
+        className="logo"
+        onClick={closeSideBar}
+      />
       <Typography variant="h1" sx={{ fontSize: "2rem", alignSelf: "center" }}>
         React News
       </Typography>

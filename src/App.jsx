@@ -8,11 +8,14 @@ import { Login } from "./pages/Login";
 import { About } from "./pages/About";
 import { RealNews } from "./pages/RealNews";
 import { Footer } from "./components/Footer";
-import { useMode } from "./functionality/store";
+import { useMode, useSideBarStore } from "./functionality/store";
 import { ArticlePage } from "./pages/ArticlePage";
 
 function App() {
-  const [sideBarIsOpen, setSideBarIsOpen] = useState(false);
+  const sideBarOpen = useSideBarStore((store) => store.sideBarOpen);
+
+  const openSideBar = useSideBarStore((store) => store.openSideBar);
+  const closeSideBar = useSideBarStore((store) => store.closeSideBar);
 
   const uiMode = useMode((store) => store.uiMode);
 
@@ -28,20 +31,15 @@ function App() {
 
   useEffect(() => {
     console.log(uiMode);
-
     localStorage.setItem("ui-mode", uiMode);
     document.body.classList.toggle("darkmode");
   }, [uiMode]);
 
-  const openDrawer = (value) => {
-    setSideBarIsOpen(value);
-  };
-
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
-        <Header toggleDrawer={openDrawer} />
-        <Sidebar isOpen={sideBarIsOpen} toggleDrawer={openDrawer} />
+        <Header />
+        <Sidebar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />

@@ -38,6 +38,7 @@ export function Home() {
           likes={p.likes}
           dislikes={p.dislikes}
           views={p.views}
+          tags={p.tags}
           userId={p.userId}
         />
       ));

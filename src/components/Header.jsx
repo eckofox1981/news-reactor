@@ -1,11 +1,12 @@
 import { ToggleButton, ToggleButtonGroup, Typography } from "@mui/material";
 import "../styles/header.css";
 import reactNewsLogo from "../assets/reactnewslogo.png";
-import { useMode } from "../functionality/store";
+import { useMode, useSideBarStore } from "../functionality/store";
 import { NavMenu } from "./NavMenu";
 
-export function Header({ toggleDrawer }) {
+export function Header() {
   const setUiMode = useMode((store) => store.setUiMode);
+  const openSideBar = useSideBarStore((store) => store.openSideBar);
 
   return (
     <header>
@@ -13,7 +14,7 @@ export function Header({ toggleDrawer }) {
         src={reactNewsLogo}
         alt="React News Logo"
         onClick={() => {
-          toggleDrawer(true);
+          openSideBar();
         }}
       />
       <div>
@@ -34,7 +35,7 @@ export function Header({ toggleDrawer }) {
             },
           }}
         >
-          React news
+          REACT NEWS
         </Typography>
         <Typography
           variant="h5"

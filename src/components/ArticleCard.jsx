@@ -10,8 +10,9 @@ import {
   Typography,
 } from "@mui/material";
 import { UserCard } from "./UserCard";
-import { LikeDislike } from "./LIkeDislike";
+import { LikeDislike } from "./LikeDislike";
 import { Link } from "react-router-dom";
+import { Tags } from "./Tags";
 
 export function ArticleCard({
   id,
@@ -20,6 +21,7 @@ export function ArticleCard({
   likes,
   dislikes,
   views,
+  tags,
   userId,
 }) {
   return (
@@ -111,6 +113,7 @@ export function ArticleCard({
               <Typography variant="overline">{views}</Typography>
             </Box>
           </Container>
+          <Tags tags={tags} />s
         </CardContent>
 
         <UserCard userId={userId} />

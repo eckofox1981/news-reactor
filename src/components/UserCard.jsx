@@ -34,6 +34,7 @@ export function UserCard({ userId }) {
             borderRadius: 2,
             backgroundImage:
               "linear-gradient(to right, var(--accent-color), var(--contrast-color), var(--contrast-color))",
+            alignSelf: "center",
           }}
         >
           <LinearProgress />

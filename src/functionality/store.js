@@ -17,3 +17,11 @@ const baseArticles = (set) => ({
 export const useBaseArticles = create(
   persist(devtools(baseArticles), { name: "baseArticles" })
 );
+
+const sideBarStore = (set) => ({
+  sideBarOpen: false,
+  openSideBar: () => set({ sideBarOpen: true }, false, "openSideBar"),
+  closeSideBar: () => set({ sideBarOpen: false }, false, "closeSideBar"),
+});
+
+export const useSideBarStore = create(devtools(sideBarStore));

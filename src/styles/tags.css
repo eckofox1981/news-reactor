@@ -1,0 +1,19 @@
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem auto;
+  gap: 1rem;
+}
+
+.tag {
+  background-color: var(--contrast-color);
+  color: var(--background-primary);
+  border-radius: 25%;
+  box-shadow: 2px 2px 10px var(--text-color);
+  text-align: center;
+  min-width: 4rem;
+  font-size: 1rem;
+  padding: 0.25rem;
+}
