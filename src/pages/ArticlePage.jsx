@@ -22,12 +22,12 @@ export function ArticlePage() {
     console.log("useeffefect");
 
     fetchArticle(articleId).then(setArticle);
-  }, []);
+  }, [articleId]);
 
   const PublishArticle = () => {
     if (article === null) {
       return (
-        <main>
+        <main className="middle-display">
           <CircularProgress />
         </main>
       );

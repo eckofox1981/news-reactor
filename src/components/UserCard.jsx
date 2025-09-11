@@ -27,17 +27,19 @@ export function UserCard({ userId }) {
       return (
         <Box
           sx={{
-            width: 365,
-            height: 38,
-            margin: 1,
+            marginLeft: "auto",
+            marginRight: "auto",
             border: "1px solid var(--contrast-color)",
             borderRadius: 2,
+            width: 365,
+            height: 48,
+            marginBottom: 1,
             backgroundImage:
               "linear-gradient(to right, var(--accent-color), var(--contrast-color), var(--contrast-color))",
-            alignSelf: "center",
+            color: "var(--special-color)",
           }}
         >
-          <LinearProgress />
+          <LinearProgress sx={{ height: "1rem", marginTop: "1rem" }} />
         </Box>
       );
     } else {

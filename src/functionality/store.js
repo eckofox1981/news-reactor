@@ -1,3 +1,4 @@
+import { Remove } from "@mui/icons-material";
 import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
 
@@ -25,3 +26,13 @@ const sideBarStore = (set) => ({
 });
 
 export const useSideBarStore = create(devtools(sideBarStore));
+
+const activeUserStore = (set) => ({
+  activeUser: null,
+  setActiveUser: (user) => set({ activeUser: user }, false, "setActiveUser"),
+  removeActiveUser: () => set({ activeUser: null }, false, "removeActiveUser"),
+});
+
+export const useActiveUserStore = create(
+  persist(devtools(activeUserStore), { name: "active-user" })
+);

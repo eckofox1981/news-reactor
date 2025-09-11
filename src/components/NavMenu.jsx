@@ -1,6 +1,6 @@
 import { Button, ButtonGroup } from "@mui/material";
 import HomeFilledIcon from "@mui/icons-material/HomeFilled";
-import LoginIcon from "@mui/icons-material/Login";
+import RateReviewIcon from "@mui/icons-material/RateReview";
 import InfoIcon from "@mui/icons-material/Info";
 import PublicIcon from "@mui/icons-material/Public";
 import { NavLink } from "react-router-dom";
@@ -13,9 +13,9 @@ export function NavMenu() {
           <HomeFilledIcon />
         </Button>
       </NavLink>
-      <NavLink to={"/login"}>
+      <NavLink to={"/write"}>
         <Button>
-          <LoginIcon />
+          <RateReviewIcon />
         </Button>
       </NavLink>
       <NavLink to={"/real-news"}>
