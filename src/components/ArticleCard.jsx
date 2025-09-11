@@ -113,7 +113,7 @@ export function ArticleCard({
               <Typography variant="overline">{views}</Typography>
             </Box>
           </Container>
-          <Tags tags={tags} />s
+          <Tags tags={tags} />
         </CardContent>
 
         <UserCard userId={userId} />

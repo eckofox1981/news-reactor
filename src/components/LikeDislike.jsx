@@ -1,6 +1,18 @@
 import { Button, ButtonGroup } from "@mui/material";
+import { useState } from "react";
 
 export function LikeDislike({ likes, dislikes }) {
+  const [likesCount, setLikeCount] = useState(likes);
+  const [dislikesCount, setDislikesCount] = useState(dislikes);
+
+  const addLike = () => {
+    setLikeCount(likesCount + 1);
+  };
+
+  const addDislike = () => {
+    setDislikesCount(dislikesCount + 1);
+  };
+
   return (
     <ButtonGroup
       sx={{
@@ -16,8 +28,11 @@ export function LikeDislike({ likes, dislikes }) {
           backgroundColor: "var(--accent-color)",
           color: "var(--background-color)",
         }}
+        onClick={() => {
+          addLike();
+        }}
       >
-        Likes: {likes}
+        Likes: {likesCount}
       </Button>
 
       <Button
@@ -27,8 +42,11 @@ export function LikeDislike({ likes, dislikes }) {
           backgroundColor: "var(--contrast-color)",
           color: "var(--special-color)",
         }}
+        onClick={() => {
+          addDislike();
+        }}
       >
-        Dislikes: {dislikes}
+        Dislikes: {dislikesCount}
       </Button>
     </ButtonGroup>
   );
