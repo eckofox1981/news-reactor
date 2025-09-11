@@ -36,3 +36,17 @@ const activeUserStore = (set) => ({
 export const useActiveUserStore = create(
   persist(devtools(activeUserStore), { name: "active-user" })
 );
+
+//todo: do you really need this?
+const tagsStore = (set) => ({
+  tags: [],
+});
+
+export const useTagsStore = create(devtools(tagsStore));
+
+const movedTagStore = (set) => ({
+  movedTag: null,
+  setMovedTag: (string) => set({ movedTag: string }, false, "setMovedTag"),
+});
+
+export const useMovedTagStore = create(devtools(movedTagStore));

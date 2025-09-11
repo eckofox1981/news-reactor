@@ -1,0 +1,14 @@
+#edit-main {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 1500px;
+}
+
+.post-tag.drop {
+  border: 3px dashed var(--contrast-color);
+}
+.tag-container.drop {
+  border: 3px dashed var(--contrast-color);
+}

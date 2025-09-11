@@ -8,8 +8,7 @@ export class UserObject {
     gender,
     city,
     state,
-    role,
-    password
+    role
   ) {
     this.id = id;
     this.username = username;
@@ -20,7 +19,6 @@ export class UserObject {
     this.city = city;
     this.state = state;
     this.role = role;
-    this.password = password;
   }
 }
 
