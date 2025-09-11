@@ -11,12 +11,30 @@ import {
 } from "@mui/material";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
 import TextField from "@mui/material/TextField";
-
-const handleChange = (e) => {
-  console.log("handleChange" + e);
-};
+import { useState } from "react";
 
 export function EditArticle() {
+  const [title, setTitle] = useState("");
+  const [body, setBody] = useState("");
+  const [username, setUsername] = useState("");
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
+  const [gender, setGender] = useState("");
+
+  const resetArticleInputs = () => {
+    setTitle("");
+    setBody("");
+  };
+
+  const resetAll = () => {
+    setTitle("");
+    setBody("");
+    setUsername("");
+    setCity("");
+    setState("");
+    setGender("neutral");
+  };
+
   return (
     <main>
       <Container
@@ -26,6 +44,7 @@ export function EditArticle() {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
+          gap: 2,
         }}
       >
         <Typography
@@ -43,11 +62,11 @@ export function EditArticle() {
         </Typography>
         <TextField
           required
+          value={title}
           variant="outlined"
           autoComplete="off"
           placeholder="Title"
           label="Title"
-          sx={{ width: "60%", color: "var(--text-color)" }}
           slotProps={{
             input: {
               sx: {
@@ -82,13 +101,25 @@ export function EditArticle() {
               },
             },
           }}
+          onChange={(e) => {
+            setTitle(e.target.value);
+          }}
         />
         <TextareaAutosize
+          value={body}
           aria-label="minimum-height"
           minRows={6}
           minLength={100}
           placeholder="Write your article here"
-          style={{ width: "80%", padding: "1rem", fontSize: "1.25rem" }}
+          style={{
+            width: "60%",
+            padding: "1rem",
+            fontSize: "1.25rem",
+            borderRadius: "1rem 1rem 0 1rem ",
+          }}
+          onChange={(e) => {
+            setBody(e.target.value);
+          }}
         />
         <Typography
           variant="body1"
@@ -96,11 +127,13 @@ export function EditArticle() {
         >
           Tell us who you are:
         </Typography>
-        <Box>
+        <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
           <TextField
             required
+            value={username}
             autoComplete="off"
             placeholder="username"
+            label="username"
             style={{ width: "20rem" }}
             slotProps={{
               input: {
@@ -136,9 +169,14 @@ export function EditArticle() {
                 },
               },
             }}
+            onChange={(e) => {
+              setUsername(e.target.value);
+            }}
           />
           <TextField
             required
+            value={city}
+            label="City"
             autoComplete="off"
             placeholder="City"
             style={{ width: "20rem" }}
@@ -176,11 +214,14 @@ export function EditArticle() {
                 },
               },
             }}
+            onChange={(e) => setCity(e.target.value)}
           />
           <TextField
             required
+            value={state}
             autoComplete="off"
-            placeholder="State"
+            label="state / country"
+            placeholder="State / country"
             style={{ width: "20rem" }}
             slotProps={{
               input: {
@@ -216,18 +257,53 @@ export function EditArticle() {
                 },
               },
             }}
+            onChange={(e) => {
+              setState(e.target.value);
+            }}
           />
-          <FormControl fullWidth required>
-            <InputLabel id="gender-select-label">Gender</InputLabel>
+          <FormControl
+            fullWidth
+            required
+            sx={{
+              width: "20rem",
+              "& .MuiOutlinedInput-root": {
+                color: "var(--text-color)", // selected text
+                "& fieldset": {
+                  borderColor: "var(--text-color)", // default border
+                },
+                "&:hover fieldset": {
+                  borderColor: "var(--text-color)", // hover border
+                },
+                "&.Mui-focused fieldset": {
+                  borderColor: "var(--text-color)", // focused border
+                },
+              },
+            }}
+          >
+            <InputLabel
+              id="gender-select-label"
+              sx={{
+                color: "var(--text-color)",
+                "&.Mui-focused": {
+                  color: "var(--text-color)",
+                },
+              }}
+            >
+              Gender
+            </InputLabel>
+
             <Select
               labelId="gender-select-label"
               id="gender-select"
-              value={"neutral"}
+              value={gender}
               label="Gender"
               onChange={(e) => {
-                handleChange(e.target.value);
+                setGender(e.target.value);
               }}
-              style={{ width: "20rem" }}
+              sx={{
+                color: "var(--text-color)", // selected text
+                "& .MuiSelect-icon": { color: "var(--text-color)" }, // the dropdown arrow
+              }}
             >
               <MenuItem value={"neutral"}>Neutral</MenuItem>
               <MenuItem value={"male"}>Male</MenuItem>
@@ -235,7 +311,38 @@ export function EditArticle() {
             </Select>
           </FormControl>
         </Box>
-        <Button variant="contained">Submit</Button>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
+          <Button variant="contained">Submit</Button>
+          <Button
+            variant="contained"
+            sx={{
+              backgroundColor: "var(--special-color)",
+              marginLeft: "5rem",
+            }}
+            onClick={() => {
+              resetArticleInputs();
+            }}
+          >
+            Reset
+          </Button>
+          <Button
+            variant="contained"
+            sx={{
+              backgroundColor: "var(--special-color)",
+              marginLeft: "0.5rem",
+            }}
+            onClick={() => {
+              resetAll();
+            }}
+          >
+            All
+          </Button>
+        </Box>
       </Container>
     </main>
   );
