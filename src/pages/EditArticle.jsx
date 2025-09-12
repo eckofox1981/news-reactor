@@ -18,6 +18,7 @@ import { Tags } from "../components/Tags";
 import "../styles/editArticle.css";
 import { useMovedTagStore } from "../functionality/store";
 import classNames from "classnames";
+import AddIcon from "@mui/icons-material/Add";
 
 export function EditArticle() {
   const [title, setTitle] = useState("");
@@ -51,6 +52,7 @@ export function EditArticle() {
   ]);
   const [dropPostTags, setDropPostTags] = useState(false);
   const [dropTagContainer, setDropTagContainerDrop] = useState(false);
+  const [newTag, setNewTag] = useState("");
 
   const movedTag = useMovedTagStore((store) => store.movedTag);
   const setMovedTag = useMovedTagStore((store) => store.setMovedTag);
@@ -77,6 +79,21 @@ export function EditArticle() {
     return <Tags tags={postsTags} />;
   };
 
+  const manuallyAddingTag = () => {
+    if (newTag === "") {
+      //TODO: inform user
+      console.log("empty tag");
+      return;
+    }
+    if (postsTags.includes(newTag)) {
+      //TODO: inform user
+      console.log("tag already exist");
+      return;
+    }
+    setPostTags((current) => [...current, newTag]);
+    setNewTag("");
+  };
+
   return (
     <main id="edit-main">
       <Container
@@ -88,6 +105,7 @@ export function EditArticle() {
           alignItems: "center",
           gap: 2,
           marginRight: 0,
+          width: "70rem",
         }}
       >
         <Typography
@@ -131,7 +149,7 @@ export function EditArticle() {
             },
           }}
           sx={{
-            width: "60%",
+            width: "50rem",
             "& .MuiOutlinedInput-root": {
               "& fieldset": {
                 borderColor: "var(--text-color)",
@@ -155,7 +173,7 @@ export function EditArticle() {
           minLength={100}
           placeholder="Write your article here"
           style={{
-            width: "60%",
+            width: "48rem",
             padding: "1rem",
             fontSize: "1.25rem",
             border: "1px solid var(--text-color)",
@@ -167,37 +185,59 @@ export function EditArticle() {
             setBody(e.target.value);
           }}
         />
-        <Box
-          className={classNames("post-tag", { drop: dropPostTags })}
-          onDragOver={(e) => {
-            e.preventDefault();
-            setDropPostTags(true);
-          }}
-          onDragLeave={(e) => {
-            e.preventDefault();
-            setDropPostTags(false);
-          }}
-          onDrop={(e) => {
-            setPostTags((current) => [...current, movedTag]);
-            setTagList((current) => current.filter((tag) => tag !== movedTag));
-            setMovedTag(null);
-            setDropPostTags(false);
-          }}
-          sx={{
-            minHeight: "2rem",
-            height: "fit-content",
-            width: "60%",
-            border: "1px solid var(--text-color)",
-            borderRadius: "1rem",
-            padding: "0.25rem",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            color: "rgb(113, 113, 113)",
-          }}
-        >
-          <ShowPostTags />
-        </Box>
+        <section className="add-tag">
+          <Box
+            className={classNames("post-tag", { drop: dropPostTags })}
+            onDragOver={(e) => {
+              e.preventDefault();
+              setDropPostTags(true);
+            }}
+            onDragLeave={(e) => {
+              e.preventDefault();
+              setDropPostTags(false);
+            }}
+            onDrop={(e) => {
+              setPostTags((current) => [...current, movedTag]);
+              setTagList((current) =>
+                current.filter((tag) => tag !== movedTag)
+              );
+              setMovedTag(null);
+              setDropPostTags(false);
+            }}
+            sx={{
+              minHeight: "2rem",
+              height: "fit-content",
+              width: "100%",
+              border: "1px solid var(--text-color)",
+              borderRadius: "1rem",
+              padding: "0.25rem",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              color: "rgb(113, 113, 113)",
+            }}
+          >
+            <ShowPostTags />
+          </Box>
+          <input
+            value={newTag}
+            id="new-tag-input"
+            type="text"
+            placeholder="new tag"
+            onChange={(e) => {
+              setNewTag(e.target.value);
+            }}
+          />
+          <AddIcon
+            sx={{
+              backgroundColor: "lightGreen",
+              borderRadius: "50%",
+              height: "2rem",
+              width: "2rem",
+            }}
+            onClick={() => manuallyAddingTag()}
+          />
+        </section>
         <Typography
           variant="body1"
           sx={{ textAlign: "center", fontSize: "2rem", width: "100%" }}

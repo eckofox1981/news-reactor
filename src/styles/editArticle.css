@@ -6,6 +6,25 @@
   max-width: 1500px;
 }
 
+.add-tag {
+  width: 50rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  z-index: 0;
+}
+
+#new-tag-input {
+  height: 2rem;
+  border-radius: 0.25rem;
+  left: 50rem;
+  margin-left: auto;
+  background-color: var(--background-primary);
+  color: var(-text-color);
+  padding: 0 0.5rem;
+}
+
 .post-tag.drop {
   border: 3px dashed var(--contrast-color);
 }
