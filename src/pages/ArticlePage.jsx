@@ -88,7 +88,7 @@ export function ArticlePage() {
             </Container>
             <Tags tags={article.tags} />
           </CardContent>
-          <UserCard userId={article.userId} />
+          <UserCard userId={article.userId} local={article.local} />
         </Card>
       </main>
     );
@@ -98,7 +98,25 @@ export function ArticlePage() {
 }
 
 async function fetchArticle(articleId) {
-  console.log("running");
+  //check first in localStorage
+  const articles = JSON.parse(localStorage.getItem("local-articles")) || [];
+  const localArticle = articles.find((a) => a.id == articleId);
+  console.log(localArticle);
+  console.log(localArticle);
+
+  if (localArticle !== null || localArticle !== undefined) {
+    return new Post(
+      localArticle.id,
+      localArticle.title,
+      localArticle.body,
+      localArticle.tags,
+      localArticle.likes,
+      localArticle.dislikes,
+      localArticle.views,
+      localArticle.userId,
+      localArticle.local
+    );
+  }
 
   try {
     const response = await fetch(`https://dummyjson.com/posts/${articleId}`, {
