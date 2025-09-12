@@ -10,6 +10,7 @@ import { Footer } from "./components/Footer";
 import { useMode, useSideBarStore } from "./functionality/store";
 import { ArticlePage } from "./pages/ArticlePage";
 import { EditArticle } from "./pages/EditArticle";
+import { SearchPage } from "./pages/SearchPage";
 
 function App() {
   const uiMode = useMode((store) => store.uiMode);
@@ -41,6 +42,7 @@ function App() {
           <Route path="/write" element={<EditArticle />} />
           <Route path="/about" element={<About />} />
           <Route path="/article/:id" element={<ArticlePage />} />
+          <Route path="/search" element={<SearchPage />} />
         </Routes>
         <Footer />
       </BrowserRouter>

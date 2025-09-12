@@ -25,7 +25,6 @@ export class UserObject {
 export async function fetchUser(userId, local) {
   if (local) {
     const localUsers = JSON.parse(localStorage.getItem("rn-users"));
-    console.log(localUsers);
 
     const foundUser = localUsers
       .map(

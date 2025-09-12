@@ -5,6 +5,7 @@ import { ArticleCard } from "../components/ArticleCard.jsx";
 import { Container, Grid, Typography } from "@mui/material";
 import { FillerArticleCard } from "../components/FillerArticleCard.jsx";
 import { useBaseArticles } from "../functionality/store.js";
+import { ArticleFeed } from "../components/ArticleFeed.jsx";
 
 export function Home() {
   const [posts, setPost] = useState([]);
@@ -23,44 +24,15 @@ export function Home() {
     }
   }, []);
 
-  const PublishingPost = () => {
-    if (baseArticles === null || baseArticles[0] === undefined) {
-      return (
-        <>
-          <FillerArticleCard />
-          <FillerArticleCard />
-          <FillerArticleCard />
-          <FillerArticleCard />
-          <FillerArticleCard />
-          <FillerArticleCard />
-        </>
-      );
-    } else {
-      return baseArticles.map((p) => (
-        <ArticleCard
-          key={p.id}
-          id={p.id}
-          title={p.title}
-          body={p.body}
-          likes={p.likes}
-          dislikes={p.dislikes}
-          views={p.views}
-          tags={p.tags}
-          userId={p.userId}
-          local={p.local}
-        />
-      ));
-    }
-  };
-
   return (
     <main>
       <Typography variant="h1" sx={{ textAlign: "center " }}>
         Latest news
       </Typography>
-      <Grid container spacing={2} sx={{ justifyContent: "center" }}>
-        <PublishingPost />
-      </Grid>
+      <Typography variant="subtitle1">
+        You can click on the fox to search for specific articles or tags{" "}
+      </Typography>
+      <ArticleFeed articleList={baseArticles} />
     </main>
   );
 }

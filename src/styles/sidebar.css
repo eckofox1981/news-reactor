@@ -16,6 +16,21 @@ h3 {
   align-self: center;
 }
 
+.logo:hover {
+  cursor: pointer;
+}
+
 .nav-menu {
   align-self: center;
+}
+
+.query-bar {
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  align-self: center;
+  border-bottom: 1px solid hsl(0, 0%, 90%);
+  padding: 0.5rem 2rem;
+  margin: 0.25rem auto;
 }

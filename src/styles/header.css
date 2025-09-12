@@ -23,6 +23,10 @@ header > img {
   height: 7rem;
 }
 
+header > img:hover {
+  cursor: pointer;
+}
+
 @media only screen and (max-width: 960px) {
   header {
     justify-content: center;
