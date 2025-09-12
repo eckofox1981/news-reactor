@@ -435,7 +435,22 @@ export function EditArticle() {
             alignItems: "center",
           }}
         >
-          <Button variant="contained">Submit</Button>
+          <Button
+            variant="contained"
+            onClick={() => {
+              saveLocalArticleAndUser(
+                title,
+                body,
+                postsTags,
+                username,
+                city,
+                state,
+                gender
+              );
+            }}
+          >
+            Submit
+          </Button>
           <Button
             variant="contained"
             sx={{
@@ -507,7 +522,7 @@ function saveLocalArticleAndUser(
   state,
   gender
 ) {
-  const users = JSON.parse(localeStorage.getItem("rn-users")) || [];
+  const users = JSON.parse(localStorage.getItem("rn-users")) || [];
   const localArticles =
     JSON.parse(localStorage.getItem("local-articles")) || [];
   const user = new UserObject(

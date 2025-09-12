@@ -13,7 +13,10 @@ export function Home() {
   const setBaseArticles = useBaseArticles((store) => store.setBaseArticles);
 
   useEffect(() => {
-    getTwentyPost().then(setBaseArticles);
+    const fromLocalStorage = JSON.parse(localStorage.getItem("local-articles"));
+    getTwentyPost().then((fetched) => {
+      setBaseArticles([...fromLocalStorage, ...fetched]);
+    });
   }, []);
 
   const PublishingPost = () => {
