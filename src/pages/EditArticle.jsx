@@ -29,26 +29,26 @@ export function EditArticle() {
   const [postsTags, setPostTags] = useState([]);
   const [gender, setGender] = useState("");
   const [tagList, setTagList] = useState([
-    "love",
-    "instagood",
-    "fashion",
-    "photooftheday",
-    "beautiful",
-    "art",
-    "photography",
-    "happy",
-    "picoftheday",
-    "cute",
-    "follow",
-    "tbt",
-    "nature",
-    "like",
-    "travel",
-    "style",
-    "summer",
-    "selfie",
-    "food",
-    "friends",
+    "breakingnews",
+    "worldnews",
+    "international",
+    "economy",
+    "politics",
+    "global",
+    "finance",
+    "business",
+    "markets",
+    "technology",
+    "science",
+    "health",
+    "climate",
+    "environment",
+    "sports",
+    "culture",
+    "society",
+    "media",
+    "journalism",
+    "headlines",
   ]);
   const [dropPostTags, setDropPostTags] = useState(false);
   const [dropTagContainer, setDropTagContainerDrop] = useState(false);
@@ -60,6 +60,7 @@ export function EditArticle() {
   const resetArticleInputs = () => {
     setTitle("");
     setBody("");
+    setPostTags([]);
   };
 
   const resetAll = () => {
@@ -69,6 +70,7 @@ export function EditArticle() {
     setCity("");
     setState("");
     setGender("neutral");
+    setPostTags([]);
   };
 
   const ShowPostTags = () => {
