@@ -23,6 +23,7 @@ export function ArticleCard({
   views,
   tags,
   userId,
+  local,
 }) {
   return (
     <Paper
@@ -116,7 +117,7 @@ export function ArticleCard({
           <Tags tags={tags} />
         </CardContent>
 
-        <UserCard userId={userId} />
+        <UserCard userId={userId} local={local} />
       </Card>
     </Paper>
   );

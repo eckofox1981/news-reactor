@@ -14,9 +14,13 @@ export function Home() {
 
   useEffect(() => {
     const fromLocalStorage = JSON.parse(localStorage.getItem("local-articles"));
-    getTwentyPost().then((fetched) => {
-      setBaseArticles([...fromLocalStorage, ...fetched]);
-    });
+    if (fromLocalStorage === undefined || fromLocalStorage === null) {
+      getTwentyPost().then(setBaseArticles);
+    } else {
+      getTwentyPost().then((fetched) => {
+        setBaseArticles([...fromLocalStorage, ...fetched]);
+      });
+    }
   }, []);
 
   const PublishingPost = () => {
@@ -43,6 +47,7 @@ export function Home() {
           views={p.views}
           tags={p.tags}
           userId={p.userId}
+          local={p.local}
         />
       ));
     }
@@ -84,7 +89,8 @@ async function getTwentyPost() {
         post?.reactions?.likes ? post?.reactions?.likes : 0,
         post?.reactions?.dislikes ? post?.reactions?.dislikes : 0,
         post.views ? post?.views : "",
-        post.userId ? post?.userId : ""
+        post.userId ? post?.userId : "",
+        false
       );
     });
   } catch (error) {

@@ -546,7 +546,8 @@ function saveLocalArticleAndUser(
     0,
     0,
     0,
-    user.id
+    user.id,
+    true
   );
   localArticles.push(post);
   localStorage.setItem("local-articles", JSON.stringify(localArticles));

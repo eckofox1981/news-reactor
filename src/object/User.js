@@ -22,7 +22,31 @@ export class UserObject {
   }
 }
 
-export async function fetchUser(userId) {
+export async function fetchUser(userId, local) {
+  if (local) {
+    const localUsers = JSON.parse(localStorage.getItem("rn-users"));
+    console.log(localUsers);
+
+    const foundUser = localUsers
+      .map(
+        (u) =>
+          new UserObject(
+            u.id,
+            u.username,
+            u.firstName,
+            u.lastName,
+            u.age,
+            u.gender,
+            u.city,
+            u.state,
+            u.role
+          )
+      )
+      .find((u) => u.id === userId);
+
+    return foundUser;
+  }
+
   try {
     const response = await fetch(`https://dummyjson.com/users/${userId}`, {
       method: "GET",

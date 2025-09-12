@@ -25,7 +25,7 @@ export function FillerArticleCard() {
       <Card
         sx={{
           maxWidth: 380,
-          height: 598,
+          height: 498,
           display: "flex",
           flexDirection: "column",
           alignContent: "center",

@@ -4,11 +4,11 @@ import { FemaleSvg, MaleSvg } from "./minorComponents/Svg";
 import "../styles/userCard.css";
 import { Box, Container, LinearProgress } from "@mui/material";
 
-export function UserCard({ userId }) {
+export function UserCard({ userId, local }) {
   const [user, setUser] = useState(null);
   useEffect(() => {
     const getUser = async () => {
-      const userFetched = await fetchUser(userId).catch(() => null);
+      const userFetched = await fetchUser(userId, local).catch(() => null);
       setUser(userFetched);
     };
     getUser();
