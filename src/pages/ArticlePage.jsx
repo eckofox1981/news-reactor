@@ -19,8 +19,6 @@ export function ArticlePage() {
   const [article, setArticle] = useState(null);
 
   useEffect(() => {
-    console.log("useeffefect");
-
     fetchArticle(articleId).then(setArticle);
   }, [articleId]);
 
@@ -39,27 +37,32 @@ export function ArticlePage() {
           sx={{
             backgroundColor: "var(--background-primary)",
             color: "var(--text-color)",
+            width: "80%",
+            maxWidth: "1300rem",
           }}
         >
-          <CardContent>
+          <CardContent
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "stretch",
+            }}
+          >
             <Typography variant="h2" sx={{ textAlign: "center" }}>
               {article.title}
             </Typography>
             <Typography variant="body1">{article.body}</Typography>
-            <Container
-              disableGutters
+            <Box
               sx={{
                 display: "flex",
+                justifyContent: "flex-end",
                 alignItems: "center",
-                alignSelf: "flex-end",
                 height: 40,
                 alignSelf: "flex-end",
                 gap: 0.25,
                 marginTop: "auto",
-                marginRight: 0,
                 marginBottom: "1px",
-                marginLeft: "auto",
-                width: "50%",
+                width: "fit-content",
               }}
             >
               <LikeDislike likes={article.likes} dislikes={article.dislikes} />
@@ -85,7 +88,7 @@ export function ArticlePage() {
                 </Typography>
                 <Typography variant="overline">{article.views}</Typography>
               </Box>
-            </Container>
+            </Box>
             <Tags tags={article.tags} />
           </CardContent>
           <UserCard userId={article.userId} local={article.local} />
@@ -100,11 +103,11 @@ export function ArticlePage() {
 async function fetchArticle(articleId) {
   //check first in localStorage
   const articles = JSON.parse(localStorage.getItem("local-articles")) || [];
-  const localArticle = articles.find((a) => a.id == articleId);
-  console.log(localArticle);
-  console.log(localArticle);
+  const localArticle = articles.find(
+    (a) => a.id === Number.parseInt(articleId)
+  );
 
-  if (localArticle !== null || localArticle !== undefined) {
+  if (localArticle) {
     return new Post(
       localArticle.id,
       localArticle.title,
@@ -118,6 +121,7 @@ async function fetchArticle(articleId) {
     );
   }
 
+  //otherwise check in server
   try {
     const response = await fetch(`https://dummyjson.com/posts/${articleId}`, {
       method: "GET",

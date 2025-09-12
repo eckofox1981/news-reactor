@@ -1,7 +1,7 @@
 import { useMovedTagStore } from "../functionality/store";
 import "../styles/tags.css";
 
-export function Tags({ tags }) {
+export function Tags({ tags = [] }) {
   const setMovedTag = useMovedTagStore((store) => store.setMovedTag);
 
   return (

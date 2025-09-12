@@ -26,7 +26,6 @@ function App() {
   );
 
   useEffect(() => {
-    console.log(uiMode);
     localStorage.setItem("ui-mode", uiMode);
     document.body.classList.toggle("darkmode");
   }, [uiMode]);

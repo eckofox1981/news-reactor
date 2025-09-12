@@ -150,7 +150,27 @@ export function SearchPage() {
 }
 
 async function searchByQuery(query) {
-  console.log("running" + query);
+  const local = JSON.parse(localStorage.getItem("local-articles")) || [];
+  let list = local.map(
+    (post) =>
+      new Post(
+        post?.id ? post?.id : "",
+        post.title ? post?.title : "",
+        post.body ? post?.body : "",
+        post.tags ? post?.tags : [],
+        post?.reactions?.likes ? post?.reactions?.likes : 0,
+        post?.reactions?.dislikes ? post?.reactions?.dislikes : 0,
+        post.views ? post?.views : "",
+        post.userId ? post?.userId : "",
+        true
+      )
+  );
+  list = list.filter(
+    (p) =>
+      p.title.toLowerCase().includes(query.toLowerCase()) ||
+      p.body.toLowerCase().includes(query.toLowerCase())
+  );
+  console.log(list);
 
   try {
     const response = await fetch(
@@ -166,9 +186,9 @@ async function searchByQuery(query) {
     }
 
     const returned = await response.json();
-    const posts = returned.posts || [];
+    const posts = returned.posts;
 
-    return posts.map(
+    const articles = posts.map(
       (post) =>
         new Post(
           post?.id ? post?.id : "",
@@ -182,6 +202,11 @@ async function searchByQuery(query) {
           false
         )
     );
+    if (articles.length !== 0) {
+      list.push(...articles);
+    }
+
+    return list;
   } catch (error) {
     console.log(error.message);
   }

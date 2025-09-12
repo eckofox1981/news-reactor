@@ -23,6 +23,8 @@ export class UserObject {
 }
 
 export async function fetchUser(userId, local) {
+  console.log(userId + " " + local);
+
   if (local) {
     const localUsers = JSON.parse(localStorage.getItem("rn-users"));
 

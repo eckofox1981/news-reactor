@@ -12,7 +12,7 @@ export function UserCard({ userId, local }) {
       setUser(userFetched);
     };
     getUser();
-  }, []);
+  }, [userId, local]);
 
   const LoveSymbol = () => {
     if (user.gender === "male") {

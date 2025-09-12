@@ -549,6 +549,8 @@ function saveLocalArticleAndUser(
     user.id,
     true
   );
+  console.log(post);
+
   localArticles.push(post);
   localStorage.setItem("local-articles", JSON.stringify(localArticles));
 }
