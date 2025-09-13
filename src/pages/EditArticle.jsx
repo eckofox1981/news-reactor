@@ -107,6 +107,9 @@ export function EditArticle() {
           alignItems: "center",
           gap: 2,
           width: "50rem",
+          "@media (max-width:600px)": {
+            width: "100%",
+          },
         }}
       >
         <Typography
@@ -162,26 +165,24 @@ export function EditArticle() {
                 borderColor: "var(--text-color)",
               },
             },
+            "@media (max-width:725px)": {
+              width: "25rem",
+            },
+            "@media (max-width:600px)": {
+              width: "100%",
+            },
           }}
           onChange={(e) => {
             setTitle(e.target.value);
           }}
         />
         <TextareaAutosize
+          className="body-input"
           value={body}
           aria-label="minimum-height"
           minRows={6}
           minLength={100}
           placeholder="Write your article here"
-          style={{
-            width: "38rem",
-            padding: "1rem",
-            fontSize: "1.25rem",
-            border: "1px solid var(--text-color)",
-            borderRadius: "1rem 1rem 0 1rem ",
-            backgroundColor: "var(--background-color)",
-            color: "var(--text-color)",
-          }}
           onChange={(e) => {
             setBody(e.target.value);
           }}
@@ -208,7 +209,7 @@ export function EditArticle() {
             sx={{
               minHeight: "2rem",
               height: "fit-content",
-              width: "100%",
+              width: "20rem",
               border: "1px solid var(--text-color)",
               borderRadius: "1rem",
               padding: "0.25rem",
