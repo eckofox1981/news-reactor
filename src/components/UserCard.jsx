@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { fetchUser, UserObject } from "../object/User";
-import { FemaleSvg, MaleSvg } from "./minorComponents/Svg";
+import { AmbigousSvg, FemaleSvg, MaleSvg } from "./minorComponents/Svg";
 import "../styles/userCard.css";
 import { Box, Container, LinearProgress } from "@mui/material";
 
@@ -17,9 +17,11 @@ export function UserCard({ userId, local }) {
   const LoveSymbol = () => {
     if (user.gender === "male") {
       return <MaleSvg />;
-    } else {
+    }
+    if (user.gender === "female") {
       return <FemaleSvg />;
     }
+    return <AmbigousSvg />;
   };
 
   const LaCarte = () => {

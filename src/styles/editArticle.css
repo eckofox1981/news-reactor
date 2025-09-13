@@ -1,17 +1,16 @@
 #edit-main {
   display: flex;
   flex-direction: row;
+  align-items: center;
   flex-wrap: wrap;
-  width: 100%;
-  max-width: 1500px;
+  margin: 0 auto;
 }
 
 .add-tag {
-  width: 50rem;
+  width: 40rem;
   display: flex;
   align-items: center;
   gap: 1rem;
-
   z-index: 0;
 }
 
@@ -25,9 +24,20 @@
   padding: 0 0.5rem;
 }
 
+.tag-container {
+  margin-right: auto;
+  margin-left: 0;
+}
+
 .post-tag.drop {
   border: 3px dashed var(--contrast-color);
 }
 .tag-container.drop {
   border: 3px dashed var(--contrast-color);
+}
+
+@media only screen and (max-width: 1160px) {
+  .tag-container {
+    display: none;
+  }
 }

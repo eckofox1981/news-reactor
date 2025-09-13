@@ -5,4 +5,5 @@ footer {
   background-image: linear-gradient(var(--contrast-color), var(--accent-color));
   height: 4rem;
   padding: 1rem;
+  margin-top: 1rem;
 }

@@ -17,3 +17,7 @@
   font-size: 1rem;
   padding: 0.25rem;
 }
+
+.tag:hover {
+  cursor: pointer;
+}

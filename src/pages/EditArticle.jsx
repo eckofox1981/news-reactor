@@ -75,7 +75,7 @@ export function EditArticle() {
 
   const ShowPostTags = () => {
     if (postsTags.length === 0) {
-      return <i>Add your tags here</i>;
+      return <i>Drag your tags here (or add manually)</i>;
     }
 
     return <Tags tags={postsTags} />;
@@ -106,8 +106,7 @@ export function EditArticle() {
           flexDirection: "column",
           alignItems: "center",
           gap: 2,
-          marginRight: 0,
-          width: "70rem",
+          width: "50rem",
         }}
       >
         <Typography
@@ -151,7 +150,7 @@ export function EditArticle() {
             },
           }}
           sx={{
-            width: "50rem",
+            width: "40rem",
             "& .MuiOutlinedInput-root": {
               "& fieldset": {
                 borderColor: "var(--text-color)",
@@ -175,7 +174,7 @@ export function EditArticle() {
           minLength={100}
           placeholder="Write your article here"
           style={{
-            width: "48rem",
+            width: "38rem",
             padding: "1rem",
             fontSize: "1.25rem",
             border: "1px solid var(--text-color)",
