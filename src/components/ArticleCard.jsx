@@ -13,6 +13,7 @@ import { UserCard } from "./UserCard";
 import { LikeDislike } from "./LikeDislike";
 import { Link } from "react-router-dom";
 import { Tags } from "./Tags";
+import { DeleteBtn } from "./DeleteButtong";
 
 export function ArticleCard({
   id,
@@ -81,7 +82,6 @@ export function ArticleCard({
               alignItems: "center",
               alignSelf: "flex-end",
               height: 40,
-              alignSelf: "flex-end",
               gap: 0.25,
               marginTop: "auto",
               marginRight: 0,
@@ -90,6 +90,7 @@ export function ArticleCard({
               width: "100%",
             }}
           >
+            <DeleteBtn id={id} local={local} />
             <LikeDislike likes={likes} dislikes={dislikes} />
             <Box
               sx={{
@@ -102,7 +103,6 @@ export function ArticleCard({
                 height: 40,
                 marginLeft: "auto",
                 marginRight: 0,
-                borderRadius: 3,
                 color: "var(--background-primary)",
                 paddingLeft: 0.5,
                 paddingRight: 0.5,

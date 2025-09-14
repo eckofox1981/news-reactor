@@ -12,6 +12,7 @@ import { useParams } from "react-router-dom";
 import { Post } from "../object/Post";
 import { useEffect, useState } from "react";
 import { Tags } from "../components/Tags";
+import { DeleteBtn } from "../components/DeleteButtong";
 
 export function ArticlePage() {
   const articleId = useParams().id;
@@ -65,6 +66,7 @@ export function ArticlePage() {
                 width: "fit-content",
               }}
             >
+              <DeleteBtn id={article.id} local={article.local} />
               <LikeDislike likes={article.likes} dislikes={article.dislikes} />
               <Box
                 sx={{
@@ -77,7 +79,6 @@ export function ArticlePage() {
                   height: 40,
                   marginLeft: "auto",
                   marginRight: 0,
-                  borderRadius: 3,
                   color: "var(--background-primary)",
                   paddingLeft: 0.5,
                   paddingRight: 0.5,
