@@ -2,7 +2,7 @@ import { Button, ButtonGroup } from "@mui/material";
 import HomeFilledIcon from "@mui/icons-material/HomeFilled";
 import RateReviewIcon from "@mui/icons-material/RateReview";
 import InfoIcon from "@mui/icons-material/Info";
-import PublicIcon from "@mui/icons-material/Public";
+import SearchIcon from "@mui/icons-material/Search";
 import { NavLink } from "react-router-dom";
 import { useSideBarStore } from "../functionality/store";
 
@@ -27,9 +27,9 @@ export function NavMenu() {
           <RateReviewIcon />
         </Button>
       </NavLink>
-      <NavLink to={"/real-news"}>
+      <NavLink to={"/search"}>
         <Button>
-          <PublicIcon />
+          <SearchIcon variant="large" />
         </Button>
       </NavLink>
       <NavLink to={"/about"}>

@@ -5,7 +5,6 @@ import { Header } from "./components/Header";
 import { createTheme, ThemeProvider, useColorScheme } from "@mui/material";
 import { Sidebar } from "./components/Sidebar";
 import { About } from "./pages/About";
-import { RealNews } from "./pages/RealNews";
 import { Footer } from "./components/Footer";
 import { useMode } from "./functionality/store";
 import { ArticlePage } from "./pages/ArticlePage";
@@ -38,7 +37,6 @@ function App() {
         <Sidebar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/real-news" element={<RealNews />} />
           <Route path="/write" element={<EditArticle />} />
           <Route path="/about" element={<About />} />
           <Route path="/article/:id" element={<ArticlePage />} />
