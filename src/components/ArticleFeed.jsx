@@ -18,7 +18,11 @@ export function ArticleFeed({ articleList }) {
     }
 
     if (articleList.length === 0) {
-      return <Typography variant="body1">No article found</Typography>;
+      return (
+        <Typography variant="h3" sx={{ marginTop: "2rem" }}>
+          No article found
+        </Typography>
+      );
     }
 
     return articleList.map((p) => (

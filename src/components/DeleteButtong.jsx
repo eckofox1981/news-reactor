@@ -31,11 +31,12 @@ export function DeleteBtn({ id, local }) {
             severity: "warning",
           });
           goTo();
-
-          //todo add snackbar
         } else {
-          //snackbar something went wrong
-          console.log("WRONG!");
+          setToast({
+            open: true,
+            message: "Article not deleted, something went wrong.",
+            severity: "error.",
+          });
         }
       }}
     >

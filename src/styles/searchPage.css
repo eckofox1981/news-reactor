@@ -1,0 +1,10 @@
+.search-span {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-span svg {
+  margin-right: 2rem;
+}

@@ -1,4 +1,3 @@
-import { CenterFocusStrong } from "@mui/icons-material";
 import {
   Box,
   Button,
@@ -88,17 +87,30 @@ export function EditArticle() {
 
   const manuallyAddingTag = () => {
     if (newTag === "") {
-      //TODO: inform user
-      console.log("empty tag");
       return;
     }
     if (postsTags.includes(newTag)) {
-      //TODO: inform user
       console.log("tag already exist");
       return;
     }
     setPostTags((current) => [...current, newTag]);
     setNewTag("");
+  };
+
+  const sendTagToTagList = () => {
+    if (
+      tagList.some(
+        (tag) => tag.toLocaleLowerCase() === movedTag.toLocaleLowerCase()
+      )
+    ) {
+      setToast({
+        open: true,
+        message: "Tag already exists in the list.",
+        severity: "warning",
+      });
+    } else {
+      setTagList((current) => [...current, movedTag]);
+    }
   };
 
   const saveArticle = () => {
@@ -511,7 +523,7 @@ export function EditArticle() {
           setDropTagContainerDrop(false);
         }}
         onDrop={(e) => {
-          setTagList((current) => [...current, movedTag]);
+          sendTagToTagList();
           setPostTags((current) => current.filter((tag) => tag !== movedTag));
           setMovedTag(null);
           setDropTagContainerDrop(false);

@@ -4,6 +4,7 @@ import PageviewIcon from "@mui/icons-material/Pageview";
 import { useEffect, useState } from "react";
 import { Post } from "../object/Post";
 import { ArticleFeed } from "../components/ArticleFeed";
+import "../styles/searchPage.css";
 
 export function SearchPage() {
   const [articleList, setArticleList] = useState([]);
@@ -27,11 +28,18 @@ export function SearchPage() {
 
   return (
     <main>
-      <Container>
+      <Container
+        sx={{
+          flex: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "1rem",
+        }}
+      >
         <Typography variant="h2" sx={{ textAlign: "center " }}>
           Search for articles
         </Typography>
-        <Typography variant="body1">
+        <Typography variant="body1" sx={{ textAlign: "center" }}>
           You can search for article, either by query or by tags.
         </Typography>
         <span className="search-span">
@@ -84,11 +92,10 @@ export function SearchPage() {
             fontSize="large"
             sx={{ height: "3rem", width: "3rem" }}
             onClick={() => {
+              setTagQuery("");
               searchByQuery(query).then(setArticleList);
             }}
           />
-        </span>
-        <span className="search-span">
           <TextField
             required
             value={tagQuery}
@@ -131,6 +138,7 @@ export function SearchPage() {
               },
             }}
             onChange={(e) => {
+              setQuery("");
               setTagQuery(e.target.value);
             }}
           />
