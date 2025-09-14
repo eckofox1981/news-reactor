@@ -7,10 +7,11 @@ import { Sidebar } from "./components/Sidebar";
 import { About } from "./pages/About";
 import { RealNews } from "./pages/RealNews";
 import { Footer } from "./components/Footer";
-import { useMode, useSideBarStore } from "./functionality/store";
+import { useMode } from "./functionality/store";
 import { ArticlePage } from "./pages/ArticlePage";
 import { EditArticle } from "./pages/EditArticle";
 import { SearchPage } from "./pages/SearchPage";
+import { Toast } from "./components/Toast";
 
 function App() {
   const uiMode = useMode((store) => store.uiMode);
@@ -43,6 +44,10 @@ function App() {
           <Route path="/article/:id" element={<ArticlePage />} />
           <Route path="/search" element={<SearchPage />} />
         </Routes>
+        <Toast
+          message={"Hello, what's my name? Snoop Doggy Dog"}
+          severity={"success"}
+        />
         <Footer />
       </BrowserRouter>
     </ThemeProvider>

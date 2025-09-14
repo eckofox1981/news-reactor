@@ -16,14 +16,24 @@ export function About() {
         what’s real. Because in a world full of headlines, sometimes the best
         reaction is a good story.
       </Typography>
-      <a href="mailto:eckofox1981@pm.me">
+      <Typography
+        variant="overline taxt"
+        sx={{
+          marginTop: "2rem",
+          fontWeight: 800,
+        }}
+      >
+        The React News crew
+      </Typography>
+      <a
+        href="mailto:eckofox1981@pm.me"
+        style={{ margin: " 2rem 1rem 0 auto", color: "var(--special-color)" }}
+      >
         <Typography
           variant="body1"
           sx={{
             marginTop: "2rem",
-            alignSelf: "flex-end",
-
-            marginRight: 0,
+            fontWeight: 800,
           }}
         >
           Contact us

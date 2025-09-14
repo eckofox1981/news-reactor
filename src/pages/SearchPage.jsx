@@ -7,7 +7,6 @@ import { ArticleFeed } from "../components/ArticleFeed";
 
 export function SearchPage() {
   const [articleList, setArticleList] = useState([]);
-  const [searchQuery, setSearchQuery] = useState("");
   const [tagQuery, setTagQuery] = useState("");
   const query = useQueryStore((store) => store.query);
   const setQuery = useQueryStore((store) => store.setQuery);
@@ -38,7 +37,7 @@ export function SearchPage() {
         <span className="search-span">
           <TextField
             required
-            value={searchQuery}
+            value={query}
             autoComplete="off"
             label="Search by query"
             placeholder="query"
@@ -78,14 +77,14 @@ export function SearchPage() {
               },
             }}
             onChange={(e) => {
-              setSearchQuery(e.target.value);
+              setQuery(e.target.value);
             }}
           />
           <PageviewIcon
             fontSize="large"
             sx={{ height: "3rem", width: "3rem" }}
             onClick={() => {
-              setQuery(searchQuery);
+              searchByQuery(query).then(setArticleList);
             }}
           />
         </span>
@@ -202,6 +201,7 @@ async function searchByQuery(query) {
           false
         )
     );
+
     if (articles.length !== 0) {
       list.push(...articles);
     }
@@ -213,7 +213,25 @@ async function searchByQuery(query) {
 }
 
 async function searchByTag(tag) {
-  console.log("running" + tag);
+  const local = JSON.parse(localStorage.getItem("local-articles")) || [];
+  let list = local.map(
+    (post) =>
+      new Post(
+        post?.id ? post?.id : "",
+        post.title ? post?.title : "",
+        post.body ? post?.body : "",
+        post.tags ? post?.tags : [],
+        post?.reactions?.likes ? post?.reactions?.likes : 0,
+        post?.reactions?.dislikes ? post?.reactions?.dislikes : 0,
+        post.views ? post?.views : "",
+        post.userId ? post?.userId : "",
+        true
+      )
+  );
+  list = list.filter((p) =>
+    p.tags.some((postTag) => postTag.toLowerCase().includes(tag.toLowerCase()))
+  );
+  console.log(list);
 
   try {
     const response = await fetch(`https://dummyjson.com/posts/tag/${tag}`, {
@@ -228,7 +246,7 @@ async function searchByTag(tag) {
     const returned = await response.json();
     const posts = returned.posts || [];
 
-    return posts.map(
+    const articles = posts.map(
       (post) =>
         new Post(
           post?.id ? post?.id : "",
@@ -242,6 +260,12 @@ async function searchByTag(tag) {
           false
         )
     );
+
+    if (articles.length !== 0) {
+      list.push(...articles);
+    }
+
+    return list;
   } catch (error) {
     console.log(error.message);
   }

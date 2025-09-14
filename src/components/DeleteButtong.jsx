@@ -1,10 +1,13 @@
 import { Button } from "@mui/material";
 import { Post } from "../object/Post";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useToastStore } from "../functionality/store";
 
 export function DeleteBtn({ id, local }) {
   const navigate = useNavigate();
   const location = useLocation();
+
+  const setToast = useToastStore((store) => store.setToast);
 
   if (!local) return null;
 
@@ -22,7 +25,13 @@ export function DeleteBtn({ id, local }) {
       color="warning"
       onClick={() => {
         if (deleteArticle(id)) {
+          setToast({
+            open: true,
+            message: "Article deleted.",
+            severity: "warning",
+          });
           goTo();
+
           //todo add snackbar
         } else {
           //snackbar something went wrong

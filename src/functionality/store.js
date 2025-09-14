@@ -50,3 +50,22 @@ const queryStore = (set) => ({
 });
 
 export const useQueryStore = create(devtools(queryStore));
+
+const toastStore = (set) => ({
+  toast: {
+    open: false,
+    message: "",
+    severity: "success",
+  },
+  setToast: (newToast) =>
+    set(
+      (state) => ({
+        toast: { ...state.toast, ...newToast },
+      }),
+      false,
+      "setToastOpen"
+    ),
+  hideToast: () => set((state) => ({ toast: { ...state.toast, open: false } })),
+});
+
+export const useToastStore = create(devtools(toastStore));

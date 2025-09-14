@@ -1,3 +1,7 @@
 export function RealNews() {
-  return <h1>Real News</h1>;
+  return (
+    <main>
+      <h1>Site under construction</h1>
+    </main>
+  );
 }

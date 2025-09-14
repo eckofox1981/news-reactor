@@ -16,9 +16,10 @@ import { UserObject } from "../object/User";
 import { Post } from "../object/Post";
 import { Tags } from "../components/Tags";
 import "../styles/editArticle.css";
-import { useMovedTagStore } from "../functionality/store";
+import { useMovedTagStore, useToastStore } from "../functionality/store";
 import classNames from "classnames";
 import AddIcon from "@mui/icons-material/Add";
+import { useNavigate } from "react-router-dom";
 
 export function EditArticle() {
   const [title, setTitle] = useState("");
@@ -57,6 +58,10 @@ export function EditArticle() {
   const movedTag = useMovedTagStore((store) => store.movedTag);
   const setMovedTag = useMovedTagStore((store) => store.setMovedTag);
 
+  const setToast = useToastStore((store) => store.setToast);
+
+  const navigate = useNavigate();
+
   const resetArticleInputs = () => {
     setTitle("");
     setBody("");
@@ -94,6 +99,33 @@ export function EditArticle() {
     }
     setPostTags((current) => [...current, newTag]);
     setNewTag("");
+  };
+
+  const saveArticle = () => {
+    const articleId = saveLocalArticleAndUser(
+      title,
+      body,
+      postsTags,
+      username,
+      city,
+      state,
+      gender
+    );
+
+    if (articleId) {
+      setToast({
+        open: true,
+        message: "Article saved. Redirecting.",
+        severity: "success",
+      });
+      navigate(`/article/${articleId}`);
+    } else {
+      setToast({
+        open: true,
+        message: "Error saving article, make sure all fields are completed.",
+        severity: "error",
+      });
+    }
   };
 
   return (
@@ -438,15 +470,7 @@ export function EditArticle() {
           <Button
             variant="contained"
             onClick={() => {
-              saveLocalArticleAndUser(
-                title,
-                body,
-                postsTags,
-                username,
-                city,
-                state,
-                gender
-              );
+              saveArticle();
             }}
           >
             Submit
@@ -522,11 +546,30 @@ function saveLocalArticleAndUser(
   state,
   gender
 ) {
+  if (
+    title === "" ||
+    body === "" ||
+    tags.length === 0 ||
+    username === "" ||
+    city === "" ||
+    state === "" ||
+    gender === ""
+  ) {
+    return false;
+  }
   const users = JSON.parse(localStorage.getItem("rn-users")) || [];
   const localArticles =
     JSON.parse(localStorage.getItem("local-articles")) || [];
+  let articleId;
+  if (localArticles.length !== 0) {
+    articleId = localArticles[localArticles.length - 1].id + 1;
+    console.log(articleId);
+  } else {
+    articleId = 252;
+  }
+
   const user = new UserObject(
-    252 + users.length,
+    articleId,
     username,
     "",
     "",
@@ -539,7 +582,7 @@ function saveLocalArticleAndUser(
   users.push(user);
   localStorage.setItem("rn-users", JSON.stringify(users));
   const post = new Post(
-    252 + localArticles.length,
+    articleId,
     title,
     body,
     tags || [],
@@ -553,4 +596,5 @@ function saveLocalArticleAndUser(
 
   localArticles.push(post);
   localStorage.setItem("local-articles", JSON.stringify(localArticles));
+  return post.id;
 }
