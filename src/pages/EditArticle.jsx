@@ -113,6 +113,22 @@ export function EditArticle() {
     }
   };
 
+  const sendTagToPostTags = () => {
+    if (
+      postsTags.some(
+        (tag) => tag.toLocaleLowerCase() === movedTag.toLocaleLowerCase()
+      )
+    ) {
+      setToast({
+        open: true,
+        message: "Tag already exists in the list.",
+        severity: "warning",
+      });
+    } else {
+      setPostTags((current) => [...current, movedTag]);
+    }
+  };
+
   const saveArticle = () => {
     const articleId = saveLocalArticleAndUser(
       title,
@@ -243,7 +259,7 @@ export function EditArticle() {
               setDropPostTags(false);
             }}
             onDrop={(e) => {
-              setPostTags((current) => [...current, movedTag]);
+              sendTagToPostTags();
               setTagList((current) =>
                 current.filter((tag) => tag !== movedTag)
               );
