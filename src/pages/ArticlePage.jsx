@@ -10,18 +10,28 @@ import { UserCard } from "../components/UserCard";
 import { LikeDislike } from "../components/LikeDislike";
 import { useParams } from "react-router-dom";
 import { Post } from "../object/Post";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Tags } from "../components/Tags";
-import { DeleteBtn } from "../components/DeleteButtong";
+import { DeleteBtn } from "../components/DeleteButton";
 
 export function ArticlePage() {
   const articleId = useParams().id;
 
   const [article, setArticle] = useState(null);
 
+  const hasAddedView = useRef(false);
+
   useEffect(() => {
-    fetchArticle(articleId).then(setArticle);
-  }, [articleId]);
+    fetchArticle(articleId).then((fetched) => {
+      if (!hasAddedView.current && fetched.local === true) {
+        setArticle(addView(fetched));
+        hasAddedView.current = true;
+        fetchArticle(articleId).then(setArticle);
+      } else {
+        setArticle(fetched);
+      }
+    });
+  }, []);
 
   const PublishArticle = () => {
     if (article === null) {
@@ -109,17 +119,19 @@ async function fetchArticle(articleId) {
   );
 
   if (localArticle) {
-    return new Post(
+    const article = new Post(
       localArticle.id,
       localArticle.title,
       localArticle.body,
       localArticle.tags,
       localArticle.likes,
       localArticle.dislikes,
-      localArticle.views,
+      localArticle.views++,
       localArticle.userId,
       localArticle.local
     );
+
+    return article;
   }
 
   //otherwise check in server
@@ -151,4 +163,26 @@ async function fetchArticle(articleId) {
 
     return null;
   }
+}
+
+function addView(article) {
+  let articles = JSON.parse(localStorage.getItem("local-articles")).map((a) => {
+    return new Post(
+      a.id,
+      a.title,
+      a.body,
+      a.tags,
+      a.likes,
+      a.dislikes,
+      a.views,
+      a.userId,
+      a.local
+    );
+  });
+  article.views = article.views + 1;
+  articles = articles.filter((a) => a.id !== article.id);
+  articles.push(article);
+  localStorage.setItem("local-articles", JSON.stringify(articles));
+
+  return { ...article };
 }

@@ -585,10 +585,13 @@ function saveLocalArticleAndUser(
   ) {
     return false;
   }
+
   const users = JSON.parse(localStorage.getItem("rn-users")) || [];
   const localArticles =
     JSON.parse(localStorage.getItem("local-articles")) || [];
+
   let articleId;
+
   if (localArticles.length !== 0) {
     articleId = localArticles[localArticles.length - 1].id + 1;
     console.log(articleId);
@@ -597,7 +600,7 @@ function saveLocalArticleAndUser(
   }
 
   const user = new UserObject(
-    articleId,
+    articleId * Math.floor(Math.random() * 10),
     username,
     "",
     "",
@@ -607,6 +610,7 @@ function saveLocalArticleAndUser(
     state,
     "user"
   );
+
   users.push(user);
   localStorage.setItem("rn-users", JSON.stringify(users));
   const post = new Post(
@@ -621,8 +625,10 @@ function saveLocalArticleAndUser(
     true
   );
   console.log(post);
-
+  console.log(localArticles);
   localArticles.push(post);
+  console.log(localArticles);
+
   localStorage.setItem("local-articles", JSON.stringify(localArticles));
   return post.id;
 }

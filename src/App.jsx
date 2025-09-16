@@ -1,8 +1,8 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Home } from "./pages/Home";
 import { Header } from "./components/Header";
-import { createTheme, ThemeProvider, useColorScheme } from "@mui/material";
+import { createTheme, ThemeProvider } from "@mui/material";
 import { Sidebar } from "./components/Sidebar";
 import { About } from "./pages/About";
 import { Footer } from "./components/Footer";
@@ -19,15 +19,14 @@ function App() {
     () =>
       createTheme({
         palette: {
-          mode: "dark",
+          mode: uiMode,
         },
       }),
     [uiMode]
   );
 
   useEffect(() => {
-    localStorage.setItem("ui-mode", uiMode);
-    document.body.classList.toggle("darkmode");
+    document.body.classList.toggle("darkmode", uiMode === "dark");
   }, [uiMode]);
 
   return (
@@ -42,10 +41,7 @@ function App() {
           <Route path="/article/:id" element={<ArticlePage />} />
           <Route path="/search" element={<SearchPage />} />
         </Routes>
-        <Toast
-          message={"Hello, what's my name? Snoop Doggy Dog"}
-          severity={"success"}
-        />
+        <Toast />
         <Footer />
       </BrowserRouter>
     </ThemeProvider>

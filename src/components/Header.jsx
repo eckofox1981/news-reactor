@@ -5,8 +5,16 @@ import { useMode, useSideBarStore } from "../functionality/store";
 import { NavMenu } from "./NavMenu";
 
 export function Header() {
+  const uiMode = useMode((store) => store.uiMode);
   const setUiMode = useMode((store) => store.setUiMode);
   const openSideBar = useSideBarStore((store) => store.openSideBar);
+
+  const toggleMode = (_, newMode) => {
+    //(_, newMode), the underscore is a MUI specific thing
+    if (newMode !== null) {
+      setUiMode(newMode);
+    }
+  };
 
   return (
     <header>
@@ -54,9 +62,8 @@ export function Header() {
           color="info"
           size="small"
           exclusive
-          onChange={(e) => {
-            setUiMode(e.target.value);
-          }}
+          value={uiMode}
+          onChange={toggleMode}
           aria-label="Platform"
         >
           <ToggleButton value="light">Light</ToggleButton>

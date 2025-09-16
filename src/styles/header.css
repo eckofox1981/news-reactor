@@ -17,6 +17,8 @@ header > div {
 .buttons {
   align-items: flex-end;
   gap: 0.5rem;
+  align-self: flex-end;
+  margin-bottom: 0.25rem;
 }
 
 header > img {

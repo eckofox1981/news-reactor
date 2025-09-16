@@ -13,7 +13,7 @@ import { UserCard } from "./UserCard";
 import { LikeDislike } from "./LikeDislike";
 import { Link } from "react-router-dom";
 import { Tags } from "./Tags";
-import { DeleteBtn } from "./DeleteButtong";
+import { DeleteBtn } from "./DeleteButton";
 
 export function ArticleCard({
   id,
