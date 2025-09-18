@@ -1,14 +1,12 @@
 import { useEffect, useState } from "react";
-import { Post } from "../object/Post.js";
-import { use } from "react";
 import { ArticleCard } from "../components/ArticleCard.jsx";
-import { Container, Grid, Typography } from "@mui/material";
-import { FillerArticleCard } from "../components/FillerArticleCard.jsx";
-import { useBaseArticles } from "../functionality/store.js";
+import { Typography } from "@mui/material";
+import { useBaseArticles } from "../store/store.js";
 import { ArticleFeed } from "../components/ArticleFeed.jsx";
+import { getTwentyPost } from "../api/fetchArticles.js";
 
 export function Home() {
-  const [posts, setPost] = useState([]);
+  2;
 
   const baseArticles = useBaseArticles((store) => store.baseArticles);
   const setBaseArticles = useBaseArticles((store) => store.setBaseArticles);
@@ -35,37 +33,4 @@ export function Home() {
       <ArticleFeed articleList={baseArticles} />
     </main>
   );
-}
-
-async function getTwentyPost() {
-  try {
-    const response = await fetch(
-      "https://dummyjson.com/posts?limit=20&sortBy=id&order=desc",
-      {
-        method: "GET",
-      }
-    );
-
-    if (!response.ok) {
-      const message = await response.text();
-      throw new Error(message);
-    }
-
-    const responseReturned = await response.json();
-    return responseReturned.posts.map((post) => {
-      return new Post(
-        post?.id ? post?.id : "",
-        post.title ? post?.title : "",
-        post.body ? post?.body : "",
-        post.tags ? post?.tags : [],
-        post?.reactions?.likes ? post?.reactions?.likes : 0,
-        post?.reactions?.dislikes ? post?.reactions?.dislikes : 0,
-        post.views ? post?.views : "",
-        post.userId ? post?.userId : "",
-        false
-      );
-    });
-  } catch (error) {
-    console.error(error.message);
-  }
 }

@@ -1,10 +1,10 @@
 import { Container, TextField, Typography } from "@mui/material";
-import { useQueryStore } from "../functionality/store";
+import { useQueryStore } from "../store/store";
 import PageviewIcon from "@mui/icons-material/Pageview";
 import { useEffect, useState } from "react";
-import { Post } from "../object/Post";
 import { ArticleFeed } from "../components/ArticleFeed";
 import "../styles/searchPage.css";
+import { searchByQuery, searchByTag } from "../api/fetchArticles";
 
 export function SearchPage() {
   const [articleList, setArticleList] = useState([]);
@@ -154,127 +154,4 @@ export function SearchPage() {
       </Container>
     </main>
   );
-}
-
-async function searchByQuery(query) {
-  const local = JSON.parse(localStorage.getItem("local-articles")) || [];
-  let list = local.map(
-    (post) =>
-      new Post(
-        post?.id ? post?.id : "",
-        post.title ? post?.title : "",
-        post.body ? post?.body : "",
-        post.tags ? post?.tags : [],
-        post?.reactions?.likes ? post?.reactions?.likes : 0,
-        post?.reactions?.dislikes ? post?.reactions?.dislikes : 0,
-        post.views ? post?.views : "",
-        post.userId ? post?.userId : "",
-        true
-      )
-  );
-  list = list.filter(
-    (p) =>
-      p.title.toLowerCase().includes(query.toLowerCase()) ||
-      p.body.toLowerCase().includes(query.toLowerCase())
-  );
-  console.log(list);
-
-  try {
-    const response = await fetch(
-      `https://dummyjson.com/posts/search?q=${query}`,
-      {
-        method: "GET",
-      }
-    );
-
-    if (!response.ok) {
-      const message = await response.text();
-      throw new Error(message);
-    }
-
-    const returned = await response.json();
-    const posts = returned.posts;
-
-    const articles = posts.map(
-      (post) =>
-        new Post(
-          post?.id ? post?.id : "",
-          post.title ? post?.title : "",
-          post.body ? post?.body : "",
-          post.tags ? post?.tags : [],
-          post?.reactions?.likes ? post?.reactions?.likes : 0,
-          post?.reactions?.dislikes ? post?.reactions?.dislikes : 0,
-          post.views ? post?.views : "",
-          post.userId ? post?.userId : "",
-          false
-        )
-    );
-
-    if (articles.length !== 0) {
-      list.push(...articles);
-    }
-
-    return list;
-  } catch (error) {
-    console.log(error.message);
-  }
-}
-
-async function searchByTag(tag) {
-  const local = JSON.parse(localStorage.getItem("local-articles")) || [];
-  let list = local.map(
-    (post) =>
-      new Post(
-        post?.id ? post?.id : "",
-        post.title ? post?.title : "",
-        post.body ? post?.body : "",
-        post.tags ? post?.tags : [],
-        post?.reactions?.likes ? post?.reactions?.likes : 0,
-        post?.reactions?.dislikes ? post?.reactions?.dislikes : 0,
-        post.views ? post?.views : "",
-        post.userId ? post?.userId : "",
-        true
-      )
-  );
-  list = list.filter((p) =>
-    p.tags.some((postTag) => postTag.toLowerCase().includes(tag.toLowerCase()))
-  );
-  console.log(list);
-
-  try {
-    const response = await fetch(`https://dummyjson.com/posts/tag/${tag}`, {
-      method: "GET",
-    });
-
-    if (!response.ok) {
-      const message = await response.text();
-      throw new Error(message);
-    }
-
-    const returned = await response.json();
-    const posts = returned.posts || [];
-
-    const articles = posts.map(
-      (post) =>
-        new Post(
-          post?.id ? post?.id : "",
-          post.title ? post?.title : "",
-          post.body ? post?.body : "",
-          post.tags ? post?.tags : [],
-          post?.reactions?.likes ? post?.reactions?.likes : 0,
-          post?.reactions?.dislikes ? post?.reactions?.dislikes : 0,
-          post.views ? post?.views : "",
-          post.userId ? post?.userId : "",
-          false
-        )
-    );
-
-    if (articles.length !== 0) {
-      list.push(...articles);
-    }
-
-    return list;
-  } catch (error) {
-    console.log(error.message);
-  }
 }

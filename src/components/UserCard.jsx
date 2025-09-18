@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { fetchUser, UserObject } from "../object/User";
-import { AmbigousSvg, FemaleSvg, MaleSvg } from "./minorComponents/Svg";
+import { fetchUser } from "../api/fetchUser";
+import { AmbigousSvg, FemaleSvg, MaleSvg } from "./Svg";
 import "../styles/userCard.css";
 import { Box, Container, LinearProgress } from "@mui/material";
 

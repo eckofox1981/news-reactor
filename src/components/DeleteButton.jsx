@@ -1,7 +1,7 @@
 import { Button } from "@mui/material";
 import { Post } from "../object/Post";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useToastStore } from "../functionality/store";
+import { useToastStore } from "../store/store";
 
 export function DeleteBtn({ id, local }) {
   const navigate = useNavigate();

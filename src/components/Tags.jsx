@@ -1,4 +1,4 @@
-import { useMovedTagStore } from "../functionality/store";
+import { useMovedTagStore } from "../store/store";
 import "../styles/tags.css";
 
 export function Tags({ tags = [] }) {

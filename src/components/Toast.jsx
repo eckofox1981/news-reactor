@@ -1,5 +1,5 @@
 import { Alert, Snackbar } from "@mui/material";
-import { useToastStore } from "../functionality/store";
+import { useToastStore } from "../store/store";
 
 export function Toast() {
   const toast = useToastStore((store) => store.toast);

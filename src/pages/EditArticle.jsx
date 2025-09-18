@@ -11,14 +11,14 @@ import {
 import TextareaAutosize from "@mui/material/TextareaAutosize";
 import TextField from "@mui/material/TextField";
 import { useState } from "react";
-import { UserObject } from "../object/User";
-import { Post } from "../object/Post";
 import { Tags } from "../components/Tags";
 import "../styles/editArticle.css";
-import { useMovedTagStore, useToastStore } from "../functionality/store";
+import { useMovedTagStore, useToastStore } from "../store/store";
 import classNames from "classnames";
 import AddIcon from "@mui/icons-material/Add";
 import { useNavigate } from "react-router-dom";
+import { saveLocalArticleAndUser } from "../api/saveArticleAndUser";
+import { listOfTags } from "../assets/listOfTags";
 
 export function EditArticle() {
   const [title, setTitle] = useState("");
@@ -28,28 +28,7 @@ export function EditArticle() {
   const [state, setState] = useState("");
   const [postsTags, setPostTags] = useState([]);
   const [gender, setGender] = useState("");
-  const [tagList, setTagList] = useState([
-    "breakingnews",
-    "worldnews",
-    "international",
-    "economy",
-    "politics",
-    "global",
-    "finance",
-    "business",
-    "markets",
-    "technology",
-    "science",
-    "health",
-    "climate",
-    "environment",
-    "sports",
-    "culture",
-    "society",
-    "media",
-    "journalism",
-    "headlines",
-  ]);
+  const [tagList, setTagList] = useState(listOfTags);
   const [dropPostTags, setDropPostTags] = useState(false);
   const [dropTagContainer, setDropTagContainerDrop] = useState(false);
   const [newTag, setNewTag] = useState("");
@@ -563,72 +542,4 @@ export function EditArticle() {
       </Box>
     </main>
   );
-}
-
-function saveLocalArticleAndUser(
-  title,
-  body,
-  tags,
-  username,
-  city,
-  state,
-  gender
-) {
-  if (
-    title === "" ||
-    body === "" ||
-    tags.length === 0 ||
-    username === "" ||
-    city === "" ||
-    state === "" ||
-    gender === ""
-  ) {
-    return false;
-  }
-
-  const users = JSON.parse(localStorage.getItem("rn-users")) || [];
-  const localArticles =
-    JSON.parse(localStorage.getItem("local-articles")) || [];
-
-  let articleId;
-
-  if (localArticles.length !== 0) {
-    articleId = localArticles[localArticles.length - 1].id + 1;
-    console.log(articleId);
-  } else {
-    articleId = 252;
-  }
-
-  const user = new UserObject(
-    articleId * Math.floor(Math.random() * 10),
-    username,
-    "",
-    "",
-    "",
-    gender,
-    city,
-    state,
-    "user"
-  );
-
-  users.push(user);
-  localStorage.setItem("rn-users", JSON.stringify(users));
-  const post = new Post(
-    articleId,
-    title,
-    body,
-    tags || [],
-    0,
-    0,
-    0,
-    user.id,
-    true
-  );
-  console.log(post);
-  console.log(localArticles);
-  localArticles.push(post);
-  console.log(localArticles);
-
-  localStorage.setItem("local-articles", JSON.stringify(localArticles));
-  return post.id;
 }

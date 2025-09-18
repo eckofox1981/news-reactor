@@ -1,0 +1,23 @@
+//separate list of tags for cleaner code in EditArticle.jsx
+export const listOfTags = [
+  "breakingnews",
+  "worldnews",
+  "international",
+  "economy",
+  "politics",
+  "global",
+  "finance",
+  "business",
+  "markets",
+  "technology",
+  "science",
+  "health",
+  "climate",
+  "environment",
+  "sports",
+  "culture",
+  "society",
+  "media",
+  "journalism",
+  "headlines",
+];

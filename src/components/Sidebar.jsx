@@ -6,7 +6,7 @@ import {
   useBaseArticles,
   useQueryStore,
   useSideBarStore,
-} from "../functionality/store";
+} from "../store/store";
 import { Link, useNavigate } from "react-router-dom";
 import PageviewIcon from "@mui/icons-material/Pageview";
 import { useState } from "react";

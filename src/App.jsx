@@ -6,7 +6,7 @@ import { createTheme, ThemeProvider } from "@mui/material";
 import { Sidebar } from "./components/Sidebar";
 import { About } from "./pages/About";
 import { Footer } from "./components/Footer";
-import { useMode } from "./functionality/store";
+import { useMode } from "./store/store";
 import { ArticlePage } from "./pages/ArticlePage";
 import { EditArticle } from "./pages/EditArticle";
 import { SearchPage } from "./pages/SearchPage";

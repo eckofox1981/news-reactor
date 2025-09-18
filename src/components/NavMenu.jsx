@@ -4,7 +4,7 @@ import RateReviewIcon from "@mui/icons-material/RateReview";
 import InfoIcon from "@mui/icons-material/Info";
 import SearchIcon from "@mui/icons-material/Search";
 import { NavLink } from "react-router-dom";
-import { useSideBarStore } from "../functionality/store";
+import { useSideBarStore } from "../store/store";
 
 export function NavMenu() {
   const closeSideBar = useSideBarStore((store) => store.closeSideBar);

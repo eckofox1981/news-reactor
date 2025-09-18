@@ -1,7 +1,7 @@
 import { ToggleButton, ToggleButtonGroup, Typography } from "@mui/material";
 import "../styles/header.css";
 import reactNewsLogo from "../assets/reactnewslogo.png";
-import { useMode, useSideBarStore } from "../functionality/store";
+import { useMode, useSideBarStore } from "../store/store";
 import { NavMenu } from "./NavMenu";
 
 export function Header() {

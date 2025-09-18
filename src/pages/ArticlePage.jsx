@@ -3,16 +3,15 @@ import {
   Card,
   CardContent,
   CircularProgress,
-  Container,
   Typography,
 } from "@mui/material";
 import { UserCard } from "../components/UserCard";
 import { LikeDislike } from "../components/LikeDislike";
 import { useParams } from "react-router-dom";
-import { Post } from "../object/Post";
 import { useEffect, useRef, useState } from "react";
 import { Tags } from "../components/Tags";
 import { DeleteBtn } from "../components/DeleteButton";
+import { addView, fetchSingleArticle } from "../api/fetchArticles";
 
 export function ArticlePage() {
   const articleId = useParams().id;
@@ -22,11 +21,11 @@ export function ArticlePage() {
   const hasAddedView = useRef(false);
 
   useEffect(() => {
-    fetchArticle(articleId).then((fetched) => {
+    fetchSingleArticle(articleId).then((fetched) => {
       if (!hasAddedView.current && fetched.local === true) {
         setArticle(addView(fetched));
         hasAddedView.current = true;
-        fetchArticle(articleId).then(setArticle);
+        fetchSingleArticle(articleId).then(setArticle);
       } else {
         setArticle(fetched);
       }
@@ -109,80 +108,4 @@ export function ArticlePage() {
   };
 
   return <PublishArticle />;
-}
-
-async function fetchArticle(articleId) {
-  //check first in localStorage
-  const articles = JSON.parse(localStorage.getItem("local-articles")) || [];
-  const localArticle = articles.find(
-    (a) => a.id === Number.parseInt(articleId)
-  );
-
-  if (localArticle) {
-    const article = new Post(
-      localArticle.id,
-      localArticle.title,
-      localArticle.body,
-      localArticle.tags,
-      localArticle.likes,
-      localArticle.dislikes,
-      localArticle.views++,
-      localArticle.userId,
-      localArticle.local
-    );
-
-    return article;
-  }
-
-  //otherwise check in server
-  try {
-    const response = await fetch(`https://dummyjson.com/posts/${articleId}`, {
-      method: "GET",
-    });
-
-    if (!response.ok) {
-      const message = await response.text();
-      throw new Error(message);
-    }
-
-    const post = await response.json();
-    console.log(post);
-
-    return new Post(
-      post?.id ? post?.id : "",
-      post.title ? post?.title : "",
-      post.body ? post?.body : "",
-      post.tags ? post?.tags : [],
-      post?.reactions?.likes ? post?.reactions?.likes : 0,
-      post?.reactions?.dislikes ? post?.reactions?.dislikes : 0,
-      post.views ? post?.views : "",
-      post.userId ? post?.userId : ""
-    );
-  } catch (error) {
-    console.error(error.message);
-
-    return null;
-  }
-}
-
-function addView(article) {
-  let articles = JSON.parse(localStorage.getItem("local-articles")).map((a) => {
-    return new Post(
-      a.id,
-      a.title,
-      a.body,
-      a.tags,
-      a.likes,
-      a.dislikes,
-      a.views,
-      a.userId,
-      a.local
-    );
-  });
-  article.views = article.views + 1;
-  articles = articles.filter((a) => a.id !== article.id);
-  articles.push(article);
-  localStorage.setItem("local-articles", JSON.stringify(articles));
-
-  return { ...article };
 }
