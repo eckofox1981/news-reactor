@@ -29,8 +29,7 @@ export function saveLocalArticleAndUser(
   let articleId;
 
   if (localArticles.length !== 0) {
-    articleId = localArticles[localArticles.length - 1].id + 1;
-    console.log(articleId);
+    articleId = Math.max(...localArticles.map((article) => article.id)) + 1;
   } else {
     articleId = 252;
   }
@@ -60,10 +59,8 @@ export function saveLocalArticleAndUser(
     user.id,
     true
   );
-  console.log(post);
-  console.log(localArticles);
+
   localArticles.push(post);
-  console.log(localArticles);
 
   localStorage.setItem("local-articles", JSON.stringify(localArticles));
   return post.id;

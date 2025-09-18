@@ -54,7 +54,6 @@ export async function searchByQuery(query) {
       p.title.toLowerCase().includes(query.toLowerCase()) ||
       p.body.toLowerCase().includes(query.toLowerCase())
   );
-  console.log(list);
 
   try {
     const response = await fetch(
@@ -116,7 +115,6 @@ export async function searchByTag(tag) {
   list = list.filter((p) =>
     p.tags.some((postTag) => postTag.toLowerCase().includes(tag.toLowerCase()))
   );
-  console.log(list);
 
   try {
     const response = await fetch(`https://dummyjson.com/posts/tag/${tag}`, {
@@ -191,7 +189,6 @@ export async function fetchSingleArticle(articleId) {
     }
 
     const post = await response.json();
-    console.log(post);
 
     return new Post(
       post?.id ? post?.id : "",

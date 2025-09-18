@@ -17,8 +17,8 @@ import { useMovedTagStore, useToastStore } from "../store/store";
 import classNames from "classnames";
 import AddIcon from "@mui/icons-material/Add";
 import { useNavigate } from "react-router-dom";
-import { saveLocalArticleAndUser } from "../api/saveArticleAndUser";
 import { listOfTags } from "../assets/listOfTags";
+import { saveLocalArticleAndUser } from "../api/saveArticleAndUser";
 
 export function EditArticle() {
   const [title, setTitle] = useState("");
@@ -69,7 +69,6 @@ export function EditArticle() {
       return;
     }
     if (postsTags.includes(newTag)) {
-      console.log("tag already exist");
       return;
     }
     setPostTags((current) => [...current, newTag]);
@@ -517,7 +516,7 @@ export function EditArticle() {
           e.preventDefault();
           setDropTagContainerDrop(false);
         }}
-        onDrop={(e) => {
+        onDrop={() => {
           sendTagToTagList();
           setPostTags((current) => current.filter((tag) => tag !== movedTag));
           setMovedTag(null);
